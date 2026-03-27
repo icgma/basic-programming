@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>基础编程（AI编程与Python基础）| 汕头大学</title>
+  <meta name="description" content="汕头大学长江新闻与传播学院《基础编程》课程网站 — 16周课程进度、作业要求、期末项目指南">
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+<!-- ===== Navbar ===== -->
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <div class="nav-brand"><span class="icon">🐍</span> 基础编程</div>
+    <div class="nav-links">
+      <a href="#schedule">课程进度</a>
+      <a href="#grading">考核方式</a>
+      <a href="#setup">环境配置</a>
+      <a href="#ai-tools">AI工具</a>
+      <a href="#project">期末项目</a>
+      <a href="#resources">学习资源</a>
+      <a href="#faq">常见问题</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== Hero ===== -->
+<header class="hero">
+  <div class="hero-content">
+    <h1>基础编程<br><span class="accent">AI编程与Python基础</span></h1>
+    <p class="subtitle">面向新闻传播专业的编程入门课程 · 以社交媒体数据分析为主线 · AI 辅助学习</p>
+    <div class="hero-meta">
+      <span>📌 课程代码：JOU2155B</span>
+      <span>📚 学分：2</span>
+      <span>⏱️ 32 课时（理论 16h + 实验 16h）</span>
+      <span>🏫 长江新闻与传播学院</span>
+    </div>
+  </div>
+</header>
+
+<!-- ===== 课程进度表 ===== -->
+<section class="section" id="schedule">
+  <div class="section-inner fade-in">
+    <h2 class="section-title">📅 16 周课程进度</h2>
+    <p class="section-subtitle">点击任意一周查看详细内容、教学目标和作业要求。高亮显示的是当前周次。</p>
+
+    <div class="week-grid">
+
+      <!-- Week 1 -->
+      <div class="week-card" onclick="toggleWeek(this)">
+        <div class="week-header">
+          <div class="week-num">01</div>
+          <div><div class="week-title">课程导论与 AI 编程概述</div><div class="week-module">模块一：编程基础与AI入门</div></div>
+        </div>
+        <div class="week-body">
+          <h4>📖 教学目标</h4>
+          <ul>
+            <li>理解课程整体架构和学习路径</li>
+            <li>认识 AI 辅助编程的概念和优势</li>
+            <li>了解 Python 语言的特点和应用领域</li>
+          </ul>
+          <h4>🔬 实验内容</h4>
+          <ul>
+            <li>演示 AI 编程工具的基本使用</li>
+            <li>展示 Python 在新闻数据分析中的实际案例</li>
+            <li>注册 Lingma / Trae 账号</li>
+          </ul>
+          <div class="hw-box"><strong>📝 作业：</strong>阅读推荐教材第 1 章；思考你希望用 Python 分析哪个社交媒体平台的数据。</div>
+        </div>
+      </div>
+
+      <!-- Week 2 -->
+      <div class="week-card" onclick="toggleWeek(this)">
+        <div class="week-header">
+          <div class="week-num">02</div>
+          <div><div class="week-title">环境配置与基础语法入门</div><div class="week-module">模块一：编程基础与AI入门</div></div>
+        </div>
+        <div class="week-body">
+          <h4>📖 教学目标</h4>
+          <ul>
+            <li>完成 Python 和 AI 工具的安装配置</li>
+            <li>掌握 Python 基本数据类型：数字、字符串</li>
+            <li>学会使用 AI 工具辅助解决环境配置问题</li>
+          </ul>
+          <h4>🔬 实验内容</h4>
+          <ul>
+            <li>完成 Python 环境安装（推荐 Anaconda）</li>
+            <li>完成 Lingma IDE 配置</li>
+            <li>在交互式环境中练习数值运算</li>
+          </ul>
+          <div class="hw-box"><strong>📝 作业：</strong>确保环境配置成功并截图提交；完成 10 道数值运算练习题。</div>
+        </div>
+      </div>
+
+      <!-- Week 3 -->
+      <div class="week-card" onclick="toggleWeek(this)">
+        <div class="week-header">
+          <div class="week-num">03</div>
+          <div><div class="week-title">字符串操作与变量</div><div class="week-module">模块一：编程基础与AI入门</div></div>
+        </div>
+        <div class="week-body">
+          <h4>📖 教学目标</h4>
+          <ul>
+            <li>掌握变量的概念和赋值语句</li>
+            <li>熟练运用字符串的各种操作</li>
+            <li>能够处理简单的新闻文本数据</li>
+          </ul>
+          <h4>🔬 实验内容</h4>
+          <ul>
+            <li>练习字符串切片操作</li>
+            <li>处理新闻标题文本：提取关键信息</li>
+            <li>使用 Lingma 辅助编写字符串处理代码</li>
+          </ul>
+          <div class="hw-box"><strong>📝 作业：</strong>编写程序处理 5 条真实新闻标题（输出标题长度、首字母大写版本）。</div>
+        </div>
+      </div>
+
+      <!-- Week 4 -->
+      <div class="week-card" onclick="toggleWeek(this)">
+        <div class="week-header">
+          <div class="week-num">04</div>
+          <div><div class="week-title">列表及其操作</div><div class="week-module">模块一：编程基础与AI入门</div></div>
+        </div>
+        <div class="week-body">
+          <h4>📖 教学目标</h4>
+          <ul>
+            <li>理解列表的概念和特点</li>
+            <li>掌握列表的创建、索引、切片操作</li>
+            <li>能够使用列表存储和管理新闻数据</li>
+          </ul>
+          <h4>🔬 实验内容</h4>
+          <ul>
+            <li>创建新闻标题列表并进行各种操作</li>
+            <li>使用 Lingma 辅助编写列表操作代码</li>
+            <li>练习：对新闻列表按标题长度排序</li>
+          </ul>
+          <div class="hw-box"><strong>📝 作业：</strong>创建一个包含 10 条新闻标题的列表，实现添加、删除、排序、查找等操作。</div>
+        </div>
+      </div>
+
+      <!-- Week 5 -->
+      <div class="week-card current" onclick="toggleWeek(this)">
+        <div class="week-header">
+          <div class="week-num">05</div>
+          <div><div class="week-title">字典及其操作</div><div class="week-module">模块二：数据结构与程序控制</div></div>
+        </div>
+        <div class="week-body">
+          <h4>📖 教学目标</h4>
+          <ul>
+            <li>理解字典的概念和键值对结构</li>
+            <li>掌握字典的创建和基本操作</li>
+            <li>能够使用字典存储结构化新闻数据</li>
+          </ul>
+          <h4>🔬 实验内容</h4>
+          <ul>
+            <li>创建新闻数据字典（标题、来源、时间、内容）</li>
+            <li>创建新闻列表（多条新闻的字典列表）</li>
+            <li>使用 AI 辅助设计数据结构</li>
+          </ul>
+          <div class="hw-box"><strong>📝 作业：</strong>设计 5 条新闻数据结构（含标题、来源、发布时间、阅读量、关键词列表），实现增删改查。</div>
+        </div>
+      </div>
+
+      <!-- Week 6 -->
+      <div class="week-card" onclick="toggleWeek(this)">
+        <div class="week-header">
+          <div class="week-num">06</div>
+          <div><div class="week-title">for 循环</div><div class="week-module">模块二：数据结构与程序控制</div></div>
+        </div>
+        <div class="week-body">
+          <h4>📖 教学目标</h4>
+          <ul>
+            <li>理解循环的概念和作用</li>
+            <li>掌握 for 循环的语法和 range() 函数</li>
+            <li>掌握列表推导式</li>
+          </ul>
+          <h4>🔬 实验内容</h4>
+          <ul>
+            <li>遍历新闻列表，打印每条新闻标题</li>
+            <li>使用列表推导式筛选特定新闻</li>
+            <li>批量处理新闻标题</li>
+          </ul>
+          <div class="hw-box"><strong>📝 作业：</strong>遍历新闻列表统计标题字数；用列表推导式筛选标题超过 20 字的新闻；计算平均阅读量。</div>
+        </div>
+      </div>
+
+      <!-- Week 7 -->
+      <div class="week-card" onclick="toggleWeek(this)">
+        <div class="week-header">
+          <div class="week-num">07</div>
+          <div><div class="week-title">while 循环与条件语句</div><div class="week-module">模块二：数据结构与程序控制</div></div>
+        </div>
+        <div class="week-body">
+          <h4>📖 教学目标</h4>
+          <ul>
+            <li>掌握 while 循环和 break / continue</li>
+            <li>掌握 if / elif / else 条件语句</li>
+          </ul>
+          <h4>🔬 实验内容</h4>
+          <ul>
+            <li>使用 while 循环实现用户输入验证</li>
+            <li>使用 if 语句按关键词对新闻分类</li>
+            <li>筛选阅读量超过 10 万的热门新闻</li>
+          </ul>
+          <div class="hw-box"><strong>📝 作业：</strong>编写新闻分类程序：根据关键词判断类别，持续输入直到 "quit" 退出，统计各类数量。</div>
+        </div>
+      </div>
+
+      <!-- Week 8 -->
+      <div class="week-card" onclick="toggleWeek(this)">
+        <div class="week-header">
+          <div class="week-num">08</div>
+          <div><div class="week-title">函数</div><div class="week-module">模块二：数据结构与程序控制</div></div>
+        </div>
+        <div class="week-body">
+          <h4>📖 教学目标</h4>
+          <ul>
+            <li>理解函数的概念和作用</li>
+            <li>掌握函数的定义、参数和返回值</li>
+            <li>熟悉常用内置函数</li>
+          </ul>
+          <h4>🔬 实验内容</h4>
+          <ul>
+            <li>编写新闻处理函数</li>
+            <li>使用 AI 生成函数并理解其逻辑</li>
+            <li>重构之前的代码，提取公共函数</li>
+          </ul>
+          <div class="hw-box"><strong>📝 作业：</strong>编写三个函数：计算新闻标题平均长度、根据关键词筛选新闻、统计各类别数量。</div>
+        </div>
+      </div>
+
+      <!-- Week 9 -->
+      <div class="week-card" onclick="toggleWeek(this)">
+        <div class="week-header">
+          <div class="week-num">09</div>
+          <div><div class="week-title">文件操作与数据读写</div><div class="week-module">模块三：文件操作与数据处理</div></div>
+        </div>
+        <div class="week-body">
+          <h4>📖 教学目标</h4>
+          <ul>
+            <li>掌握文本文件的读写操作（open / with）</li>
+            <li>学会处理 CSV 和 JSON 格式数据</li>
+            <li>能够将新闻数据保存到文件</li>
+          </ul>
+          <h4>🔬 实验内容</h4>
+          <ul>
+            <li>读取新闻数据文件</li>
+            <li>将处理后的数据保存为 CSV 和 JSON</li>
+          </ul>
+          <div class="hw-box"><strong>📝 作业：</strong>创建新闻数据 CSV 文件（至少 10 条），编写程序读取 CSV 后保存为 JSON。</div>
+        </div>
+      </div>
+
+      <!-- Week 10 -->
+      <div class="week-card" onclick="toggleWeek(this)">
+        <div class="week-header">
+          <div class="week-num">10</div>
+          <div><div class="week-title">Python 库与 Excel 数据处理</div><div class="week-module">模块三：文件操作与数据处理</div></div>
+        </div>
+        <div class="week-body">
+          <h4>📖 教学目标</h4>
+          <ul>
+            <li>理解 Python 库的概念，掌握 pip 安装</li>
+            <li>学会使用 pandas 处理 Excel 数据</li>
+          </ul>
+          <h4>🔬 实验内容</h4>
+          <ul>
+            <li>安装 pandas、openpyxl 库</li>
+            <li>读取新闻数据 Excel 文件</li>
+            <li>使用 pandas 进行数据筛选和统计</li>
+          </ul>
+          <div class="hw-box"><strong>📝 作业：</strong>下载新闻数据 Excel 文件，使用 pandas 完成读取、筛选、统计、保存，生成基本统计报告。</div>
+        </div>
+      </div>
+
+      <!-- Week 11 -->
+      <div class="week-card" onclick="toggleWeek(this)">
+        <div class="week-header">
+          <div class="week-num">11</div>
+          <div><div class="week-title">网页爬虫基础</div><div class="week-module">模块三：文件操作与数据处理</div></div>
+        </div>
+        <div class="week-body">
+          <h4>📖 教学目标</h4>
+          <ul>
+            <li>理解网页爬虫的基本原理和合规性</li>
+            <li>掌握 requests 库和 BeautifulSoup 库</li>
+          </ul>
+          <h4>🔬 实验内容</h4>
+          <ul>
+            <li>安装 requests、beautifulsoup4</li>
+            <li>抓取新闻网站首页</li>
+            <li>提取新闻标题和链接并保存</li>
+          </ul>
+          <div class="hw-box"><strong>📝 作业：</strong>选择一个新闻网站，抓取首页新闻标题和链接，保存为 CSV。</div>
+        </div>
+      </div>
+
+      <!-- Week 12 -->
+      <div class="week-card" onclick="toggleWeek(this)">
+        <div class="week-header">
+          <div class="week-num">12</div>
+          <div><div class="week-title">GitHub 与微博数据采集</div><div class="week-module">模块四：网络爬虫与文本分析</div></div>
+        </div>
+        <div class="week-body">
+          <h4>📖 教学目标</h4>
+          <ul>
+            <li>了解 GitHub 的基本使用</li>
+            <li>掌握使用开源工具采集微博数据</li>
+            <li>了解数据采集的合规性要求</li>
+          </ul>
+          <h4>🔬 实验内容</h4>
+          <ul>
+            <li>注册 GitHub 账号</li>
+            <li>搜索并下载微博爬虫项目</li>
+            <li>配置并运行爬虫，采集热点话题数据</li>
+          </ul>
+          <div class="hw-box"><strong>📝 作业：</strong>采集一个热点话题的微博数据（至少 100 条），撰写数据采集报告。</div>
+        </div>
+      </div>
+
+      <!-- Week 13 -->
+      <div class="week-card" onclick="toggleWeek(this)">
+        <div class="week-header">
+          <div class="week-num">13</div>
+          <div><div class="week-title">微信公众号数据采集</div><div class="week-module">模块四：网络爬虫与文本分析</div></div>
+        </div>
+        <div class="week-body">
+          <h4>📖 教学目标</h4>
+          <ul>
+            <li>掌握微信公众号数据采集方法</li>
+            <li>完成主流媒体公众号数据采集</li>
+          </ul>
+          <h4>🔬 实验内容</h4>
+          <ul>
+            <li>配置公众号采集工具</li>
+            <li>采集人民日报 / 央视新闻公众号文章</li>
+            <li>初步数据探索</li>
+          </ul>
+          <div class="hw-box"><strong>📝 作业：</strong>采集一个主流媒体公众号近一个月的文章（≥30 篇），整理数据并初步分析发布规律。</div>
+        </div>
+      </div>
+
+      <!-- Week 14 -->
+      <div class="week-card" onclick="toggleWeek(this)">
+        <div class="week-header">
+          <div class="week-num">14</div>
+          <div><div class="week-title">文本数据预处理与分析</div><div class="week-module">模块四：网络爬虫与文本分析</div></div>
+        </div>
+        <div class="week-body">
+          <h4>📖 教学目标</h4>
+          <ul>
+            <li>掌握中文分词技术（jieba）</li>
+            <li>学会文本清洗和预处理</li>
+            <li>能够进行词频统计和词云生成</li>
+          </ul>
+          <h4>🔬 实验内容</h4>
+          <ul>
+            <li>安装 jieba、wordcloud 库</li>
+            <li>对采集的数据进行分词</li>
+            <li>统计高频词汇、生成词云图</li>
+          </ul>
+          <div class="hw-box"><strong>📝 作业：</strong>对采集的数据完成文本预处理，生成词频统计表和词云图，撰写初步分析报告。</div>
+        </div>
+      </div>
+
+      <!-- Week 15 -->
+      <div class="week-card" onclick="toggleWeek(this)">
+        <div class="week-header">
+          <div class="week-num">15</div>
+          <div><div class="week-title">期末项目汇报（一）</div><div class="week-module">模块五：综合项目实践</div></div>
+        </div>
+        <div class="week-body">
+          <h4>📖 汇报要求</h4>
+          <ul>
+            <li>每组汇报 10-15 分钟 + 问答 5 分钟</li>
+            <li>展示项目背景、数据采集方法、分析结果</li>
+            <li>教师和同学反馈</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Week 16 -->
+      <div class="week-card" onclick="toggleWeek(this)">
+        <div class="week-header">
+          <div class="week-num">16</div>
+          <div><div class="week-title">期末项目汇报（二）与课程总结</div><div class="week-module">模块五：综合项目实践</div></div>
+        </div>
+        <div class="week-body">
+          <h4>📖 课堂安排</h4>
+          <ul>
+            <li>剩余小组汇报</li>
+            <li>课程总结与回顾</li>
+            <li>后续学习路径建议</li>
+          </ul>
+          <h4>📦 项目提交要求</h4>
+          <ul>
+            <li>完整代码（含注释）</li>
+            <li>采集的原始数据</li>
+            <li>分析结果和可视化图表</li>
+            <li>项目报告（PDF 格式）</li>
+            <li>汇报 PPT</li>
+          </ul>
+        </div>
+      </div>
+
+    </div><!-- /week-grid -->
+  </div>
+</section>
+
+<!-- ===== 考核方式 ===== -->
+<section class="section section-alt" id="grading">
+  <div class="section-inner fade-in">
+    <h2 class="section-title">📊 考核方式</h2>
+    <p class="section-subtitle">形成性评估 50% + 总结性评估 50%。</p>
+    <table class="data-table">
+      <thead><tr><th>考核项目</th><th>考核内容</th><th>权重</th></tr></thead>
+      <tbody>
+        <tr><td>日常考勤</td><td>课堂随机点名</td><td>10%</td></tr>
+        <tr><td>课堂考查</td><td>课堂检查代码编写情况及课堂提问</td><td>20%</td></tr>
+        <tr><td>日常作业</td><td>根据预期学习结果要点布置代码作业</td><td>20%</td></tr>
+        <tr><td><strong>期末项目</strong></td><td>完成社交媒体数据采集与分析项目</td><td><strong>50%</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ===== 环境配置 ===== -->
+<section class="section" id="setup">
+  <div class="section-inner fade-in">
+    <h2 class="section-title">🛠️ 环境配置</h2>
+    <p class="section-subtitle">开始编程之前，请按顺序完成以下工具的安装。</p>
+    <div class="info-grid">
+      <div class="info-card">
+        <span class="icon">🐍</span>
+        <h3>Python 安装</h3>
+        <p>推荐安装 Anaconda 发行版，自带 pip 和常用库。下载后一路 Next 安装即可。</p>
+        <a class="card-link" href="https://www.anaconda.com/download" target="_blank">下载 Anaconda →</a>
+      </div>
+      <div class="info-card">
+        <span class="icon">💻</span>
+        <h3>Lingma IDE</h3>
+        <p>我们课程使用的 AI 编程 IDE。内置通义灵码 AI 助手，帮你写代码、改 Bug、学概念。</p>
+        <a class="card-link" href="https://lingma.aliyun.com/" target="_blank">下载 Lingma IDE →</a>
+      </div>
+      <div class="info-card">
+        <span class="icon">📖</span>
+        <h3>Lingma IDE 使用指南</h3>
+        <p>我们为本课程制作的详细图文指南，覆盖安装、界面、AI 功能、快捷键等。</p>
+        <a class="card-link" href="https://icgma.github.io/Lingma-Intro/" target="_blank">查看使用指南 →</a>
+      </div>
+      <div class="info-card">
+        <span class="icon">🔧</span>
+        <h3>常见问题排查</h3>
+        <p>安装遇到问题？打开 Lingma IDE，按 <kbd>Ctrl+L</kbd> 把错误信息发给 AI 助手，它会帮你解决。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== AI 工具指南 ===== -->
+<section class="section section-alt" id="ai-tools">
+  <div class="section-inner fade-in">
+    <h2 class="section-title">🤖 AI 编程工具指南</h2>
+    <p class="section-subtitle">本课程鼓励使用 AI 工具辅助学习，但需遵守学术诚信守则。</p>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <span class="icon">✨</span>
+        <h3>怎么用 AI 学编程？</h3>
+        <p>把 AI 当作"24 小时在线的编程助教"——用来提问、理解概念、调试错误。但不要让它直接替你写作业。</p>
+      </div>
+      <div class="info-card">
+        <span class="icon">💡</span>
+        <h3>推荐使用方式</h3>
+        <p>先自己尝试 → 卡住了问 AI → 理解 AI 的解释 → 用自己的话重写代码。这个循环是最有效的学习方法。</p>
+      </div>
+      <div class="info-card">
+        <span class="icon">⚖️</span>
+        <h3>学术诚信守则</h3>
+        <p>作业中使用 AI 辅助是允许的，但你必须能<strong>解释每一行代码的作用</strong>。课堂抽查时无法解释 = 抄袭处理。</p>
+      </div>
+      <div class="info-card">
+        <span class="icon">📝</span>
+        <h3>AI 使用记录</h3>
+        <p>每次作业请在代码注释中标注：哪些部分使用了 AI 辅助、使用了什么提示词。这是考核的加分项。</p>
+      </div>
+    </div>
+
+    <div class="alert alert-info" style="margin-top:1.5rem">
+      <span class="alert-icon">📘</span>
+      <div>详细的 AI 工具使用教程请查阅 <a href="https://icgma.github.io/Lingma-Intro/" target="_blank"><strong>Lingma IDE 使用指南</strong></a>，包括代码补全、聊天面板、Quest 模式等 5 种使用方式。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 期末项目 ===== -->
+<section class="section" id="project">
+  <div class="section-inner fade-in">
+    <h2 class="section-title">📋 期末项目</h2>
+    <p class="section-subtitle">社交媒体文本数据采集与分析 · 占总成绩 50% · 3-4 人小组</p>
+
+    <!-- Overview -->
+    <div class="alert alert-warning" style="margin-bottom:2rem">
+      <span class="alert-icon">⚠️</span>
+      <div><strong>项目核心要求</strong>：选择一个社交媒体平台，围绕一个主题采集 ≥200 条数据，完成清洗、分词、词频统计、可视化，撰写分析报告。</div>
+    </div>
+
+    <!-- Topic Categories -->
+    <h3 style="color:var(--color-text-bright);margin-bottom:1.5rem;font-size:1.2rem">🏷️ 选题库（任选其一）</h3>
+
+    <div class="topic-category">
+      <h3>📰 一、主流媒体传播分析 <span class="difficulty">★★★</span></h3>
+      <div class="topic-list">
+        <div class="topic-item"><h4>选题 1：人民日报微博传播策略</h4><p>分析发布时间规律、内容主题分类、互动效果</p></div>
+        <div class="topic-item"><h4>选题 2：央视新闻公众号内容分析</h4><p>分析发布频率、标题特征、阅读量影响因素</p></div>
+        <div class="topic-item"><h4>选题 3：新华社多平台传播对比</h4><p>微博 vs 微信，内容差异与传播效果对比</p></div>
+        <div class="topic-item"><h4>选题 4：主流媒体新媒体矩阵分析</h4><p>多家媒体发布量、互动效果和风格对比</p></div>
+      </div>
+    </div>
+
+    <div class="topic-category">
+      <h3>🔥 二、社会热点事件分析 <span class="difficulty">★★★★</span></h3>
+      <div class="topic-list">
+        <div class="topic-item"><h4>选题 5：春节档电影舆论分析</h4><p>讨论热度对比、口碑演变、正负面评价</p></div>
+        <div class="topic-item"><h4>选题 6：两会热词分析</h4><p>高频政策词汇、热点议题分布</p></div>
+        <div class="topic-item"><h4>选题 7：高考话题舆情分析</h4><p>讨论热度变化、主要关注点、情感倾向</p></div>
+        <div class="topic-item"><h4>选题 8：体育赛事传播分析</h4><p>赛事热度曲线、球迷情感、传播路径</p></div>
+      </div>
+    </div>
+
+    <div class="topic-category">
+      <h3>🌐 三、网络文化现象研究 <span class="difficulty">★★★</span></h3>
+      <div class="topic-list">
+        <div class="topic-item"><h4>选题 9：网络流行语演变分析</h4><p>使用频率变化、使用场景、传播路径</p></div>
+        <div class="topic-item"><h4>选题 10：短视频热门内容分析</h4><p>热门内容类型、用户评论特征</p></div>
+        <div class="topic-item"><h4>选题 11：网络热梗传播研究</h4><p>起源追溯、传播扩散、变体演化</p></div>
+        <div class="topic-item"><h4>选题 12：粉丝文化研究</h4><p>互动模式、应援文化、社群结构</p></div>
+      </div>
+    </div>
+
+    <div class="topic-category">
+      <h3>🏢 四、品牌/机构传播分析 <span class="difficulty">★★★</span></h3>
+      <div class="topic-list">
+        <div class="topic-item"><h4>选题 13：高校官方账号传播分析</h4><p>内容主题分布、传播效果对比</p></div>
+        <div class="topic-item"><h4>选题 14：新能源汽车品牌传播</h4><p>品牌声量对比、用户口碑分析</p></div>
+        <div class="topic-item"><h4>选题 15：文旅城市形象传播</h4><p>城市形象关键词、游客评价分析</p></div>
+        <div class="topic-item"><h4>选题 16：公益组织传播效果</h4><p>传播策略、公众参与度、情感动员</p></div>
+      </div>
+    </div>
+
+    <!-- Grading -->
+    <h3 style="color:var(--color-text-bright);margin:2.5rem 0 1rem;font-size:1.2rem">📊 评分标准</h3>
+    <table class="data-table">
+      <thead><tr><th>评分项目</th><th>权重</th><th>说明</th></tr></thead>
+      <tbody>
+        <tr><td>数据采集完整性</td><td>20%</td><td>≥200 条有效数据，字段完整</td></tr>
+        <tr><td>代码质量</td><td>20%</td><td>结构清晰、有注释、可运行</td></tr>
+        <tr><td>分析深度</td><td>25%</td><td>多维度分析、理论结合</td></tr>
+        <tr><td>汇报表达</td><td>20%</td><td>PPT 质量、表达流畅</td></tr>
+        <tr><td>创新性</td><td>15%</td><td>独特见解或方法创新</td></tr>
+      </tbody>
+    </table>
+
+    <!-- Submission Checklist -->
+    <h3 style="color:var(--color-text-bright);margin:2.5rem 0 1rem;font-size:1.2rem">📦 提交材料清单</h3>
+    <ul class="checklist">
+      <li>源代码文件（.py）— 数据采集、清洗、分析代码，含注释</li>
+      <li>原始数据文件（JSON 或 CSV，≥200 条）</li>
+      <li>分析结果 — 词云图、统计图表、分析报告</li>
+      <li>项目报告（PDF 格式，3000 字以上）</li>
+      <li>汇报 PPT（15-20 页）</li>
+      <li>数据采集日志（采集时间、数量、遇到的问题）</li>
+    </ul>
+
+    <!-- Timeline -->
+    <h3 style="color:var(--color-text-bright);margin:2.5rem 0 1rem;font-size:1.2rem">⏱️ 项目时间安排</h3>
+    <table class="data-table">
+      <thead><tr><th>周次</th><th>任务</th><th>交付物</th></tr></thead>
+      <tbody>
+        <tr><td>第 10 周</td><td>确定选题，与老师沟通</td><td>选题申请</td></tr>
+        <tr><td>第 11-12 周</td><td>数据采集 + 初步清洗</td><td>原始数据集（≥500 条）</td></tr>
+        <tr><td>第 13-14 周</td><td>数据分析 + 可视化</td><td>分析结果 + 图表</td></tr>
+        <tr><td>第 15-16 周</td><td>撰写报告 + 汇报</td><td>完整项目材料</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ===== 学习资源 ===== -->
+<section class="section section-alt" id="resources">
+  <div class="section-inner fade-in">
+    <h2 class="section-title">📚 学习资源</h2>
+    <p class="section-subtitle">精选教材、在线课程和工具链接。</p>
+    <div class="resource-grid">
+      <a href="https://docs.python.org/zh-cn/3/" target="_blank" class="resource-card">
+        <div class="res-icon">🐍</div>
+        <div><h4>Python 官方文档（中文）</h4><p>最权威的 Python 参考手册</p></div>
+      </a>
+      <a href="https://icgma.github.io/Lingma-Intro/" target="_blank" class="resource-card">
+        <div class="res-icon">💻</div>
+        <div><h4>Lingma IDE 使用指南</h4><p>课程定制的 AI 编程工具教程</p></div>
+      </a>
+      <a href="https://lingma.aliyun.com/" target="_blank" class="resource-card">
+        <div class="res-icon">🤖</div>
+        <div><h4>通义灵码官网</h4><p>下载 Lingma IDE 和最新动态</p></div>
+      </a>
+      <a href="https://www.icourse163.org/course/BIT-1001870001" target="_blank" class="resource-card">
+        <div class="res-icon">🎓</div>
+        <div><h4>Python 网络爬虫与信息提取</h4><p>国家精品课程 · 北京理工大学</p></div>
+      </a>
+      <a href="https://icgma.github.io/Media-Directory/" target="_blank" class="resource-card">
+        <div class="res-icon">📰</div>
+        <div><h4>全球媒体目录</h4><p>课程配套数据集 · 全球 & 中国媒体</p></div>
+      </a>
+      <a href="https://github.com/" target="_blank" class="resource-card">
+        <div class="res-icon">🐱</div>
+        <div><h4>GitHub</h4><p>全球最大开源社区 · 第 12 周课程会用到</p></div>
+      </a>
+    </div>
+
+    <h3 style="color:var(--color-text-bright);margin:2.5rem 0 1rem;font-size:1.1rem">📘 推荐教材</h3>
+    <div class="info-grid" style="grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));">
+      <div class="info-card">
+        <h3>《Python编程：从入门到实践》第二版</h3>
+        <p>人民邮电出版社 · 最适合零基础入门的 Python 教材。</p>
+      </div>
+      <div class="info-card">
+        <h3>《像计算机科学家一样思考 Python》</h3>
+        <p>人民邮电出版社 · 培养编程思维的经典教材。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 常见问题 ===== -->
+<section class="section" id="faq">
+  <div class="section-inner fade-in">
+    <h2 class="section-title">❓ 常见问题</h2>
+    <p class="section-subtitle">如果在这里没有找到答案，请在 Lingma IDE 中按 <kbd>Ctrl+L</kbd> 问 AI 助手。</p>
+
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q">我完全没有编程基础，能跟上这门课吗？<span class="chevron">▼</span></div>
+      <div class="faq-a">完全可以！本课程就是为零基础同学设计的。我们使用 AI 辅助编程工具降低入门门槛——你可以用中文描述想做什么，AI 帮你写代码。但你需要认真上课、按时完成作业。</div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q">作业可以用 AI 工具吗？<span class="chevron">▼</span></div>
+      <div class="faq-a">可以，但你必须能解释代码的每一行。建议的流程是：先自己尝试 → 卡住了问 AI → 理解后用自己的话重写。课堂会随机抽查代码理解度。</div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q">Python 环境安装失败怎么办？<span class="chevron">▼</span></div>
+      <div class="faq-a">打开 Lingma IDE，按 <kbd>Ctrl+L</kbd> 把错误信息粘贴给 AI 助手，它会帮你逐步排查。如果还是解决不了，请在课堂上找老师或助教帮忙。</div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q">期末项目可以一个人做吗？<span class="chevron">▼</span></div>
+      <div class="faq-a">建议 3-4 人小组完成。项目涉及数据采集、清洗、分析、可视化和报告撰写，工作量较大。如有特殊情况需要独立完成，请提前与老师沟通。</div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q">自选题目需要什么条件？<span class="chevron">▼</span></div>
+      <div class="faq-a">需满足：① 与新闻传播专业相关；② 数据可合法获取；③ 有明确的研究问题。请在第 10 周前提交选题申请并获得老师批准。</div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q">课程使用 Lingma 还是 Trae？<span class="chevron">▼</span></div>
+      <div class="faq-a">本课程主推 <strong>Lingma IDE</strong>（通义灵码），它是阿里云出品的 AI 编程 IDE，对中文支持最好。Trae 也可以用，但课程演示和指南以 Lingma 为准。</div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q">爬虫采集数据违法吗？<span class="chevron">▼</span></div>
+      <div class="faq-a">合规爬取公开数据用于学术研究是允许的。但必须遵守：① 控制采集频率；② 遵守 robots.txt 协议；③ 不采集个人隐私数据；④ 仅用于课程学习。详细合规要求见第 11-12 周课程内容。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer class="footer">
+  <p>本网站为汕头大学《基础编程》课程教学资源，内容基于课程大纲 JOU2155B。</p>
+  <p style="margin-top:0.5rem;opacity:0.6">&copy; 2026 STU CSS Lab</p>
+</footer>
+
+<!-- ===== Scripts ===== -->
+<script>
+// Navbar scroll effect
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// Week card toggle
+function toggleWeek(card) {
+  const body = card.querySelector('.week-body');
+  const wasOpen = body.classList.contains('open');
+  // Close all
+  document.querySelectorAll('.week-body').forEach(b => b.classList.remove('open'));
+  // Toggle current
+  if (!wasOpen) body.classList.add('open');
+}
+
+// FAQ toggle handled inline via onclick
+
+// Scroll-triggered fade-in
+const fadeEls = document.querySelectorAll('.fade-in');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }});
+}, { threshold: 0.1 });
+fadeEls.forEach(el => observer.observe(el));
+
+// Active nav link highlight
+const sections = document.querySelectorAll('section[id]');
+window.addEventListener('scroll', () => {
+  const scrollY = window.scrollY + 100;
+  sections.forEach(sec => {
+    const top = sec.offsetTop, h = sec.offsetHeight, id = sec.getAttribute('id');
+    const link = document.querySelector(`.nav-links a[href="#${id}"]`);
+    if (link) link.classList.toggle('active', scrollY >= top && scrollY < top + h);
+  });
+});
+</script>
+
+</body>
+</html>
