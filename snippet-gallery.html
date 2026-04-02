@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>学术与新闻：代码实战片段库 | 汕头大学《基础编程》</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;700;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="index.css">
+  <style>
+    .subpage-hero { padding: 120px 20px 60px; text-align: center; }
+    .subpage-hero h1 { font-size: 2.5rem; margin-bottom: 20px; }
+    .snippet-container { display: grid; grid-template-columns: 1fr; gap: 30px; margin-bottom: 80px; }
+    .snippet-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 32px; box-shadow: var(--shadow); position: relative; }
+    .snippet-card h3 { margin-top: 0; color: var(--text); font-size: 1.4rem; display: flex; align-items: center; gap: 10px; }
+    .snippet-card .badge { font-size: 0.8rem; padding: 4px 8px; border-radius: 4px; background: rgba(14, 165, 233, 0.2); color: #0ea5e9; font-weight: 600; }
+    .copy-btn { position: absolute; right: 32px; top: 100px; background: rgba(255,255,255,0.1); border: 1px solid var(--border); color: #fff; padding: 6px 14px; border-radius: 6px; cursor: pointer; transition: all 0.2s; font-size: 0.85rem; }
+    html[data-theme="light"] .copy-btn { color: #333; background: #fff; }
+    .copy-btn:hover { background: var(--primary); color: #fff; border-color: var(--primary); }
+    pre[class*="language-"] { border-radius: 12px; margin-top: 20px; box-shadow: inset 0 0 10px rgba(0,0,0,0.2); }
+  </style>
+</head>
+<body>
+<!-- Animated Background -->
+<div class="bg-grid" aria-hidden="true"></div>
+<div class="bg-glow bg-glow-1" aria-hidden="true"></div><div class="bg-glow bg-glow-2" aria-hidden="true"></div><div class="bg-glow bg-glow-3" aria-hidden="true"></div>
+
+<!-- Navbar -->
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <div class="nav-brand"><a href="index.html" style="text-decoration:none; color:inherit; display:flex; align-items:center; gap:8px"><div class="nav-logo">🐍</div><span>基础编程</span></a></div>
+    <div class="nav-links" id="nav-links">
+      <a href="index.html">← 返回课程主页</a>
+      <a href="knowledge-graph.html">知识图谱</a>
+      <a href="prompt-engineering.html">AI防伪指南</a>
+      <button class="theme-toggle" id="themeToggle"><div class="theme-toggle-knob" id="themeIcon">🌙</div></button>
+    </div>
+  </div>
+</nav>
+
+<main id="main-content">
+  <section class="subpage-hero">
+    <div class="container fade-in">
+      <div class="section-label">💻 Code Snippets</div>
+      <h1>学术与新闻 <span class="accent">实战片段库</span></h1>
+      <p class="subtitle" style="max-width: 650px; margin: 0 auto;">防止重复造轮子。为你提供最高频的数据新闻与计算传播学实战代码模板，点击即可一键复制并融入你的作业与课题。</p>
+    </div>
+  </section>
+
+  <section class="container fade-in">
+    <div class="snippet-container">
+      
+      <!-- Snippet 1 -->
+      <article class="snippet-card">
+        <h3><span aria-hidden="true">🛡️</span> ETL 网络请求与伪装 <span class="badge">数据采集中级</span></h3>
+        <p style="color:var(--text-muted); line-height: 1.6;">在抓取新闻网站或社交平台时，经常会遇到 403 Forbidden 错误。你需要使用 `headers` 来伪装成真实的浏览器。</p>
+        <button class="copy-btn" onclick="copyCode(this, 'code1')">复制代码</button>
+        <pre><code id="code1" class="language-python">import requests
+import time
+import random
+
+# 定义高鲁棒性请求函数
+def fetch_url(url):
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+        'Accept-Language': 'zh-CN,zh;q=0.9',
+        'Referer': 'https://www.google.com/'
+    }
+    
+    try:
+        # 随机休眠 1-3 秒，防止被识别为机器人封禁
+        time.sleep(random.uniform(1.0, 3.0))
+        response = requests.get(url, headers=headers, timeout=10)
+        response.raise_for_status() # 检查状态码是否为 200
+        return response.text
+    except Exception as e:
+        print(f"请求失败: {e}")
+        return None</code></pre>
+      </article>
+
+      <!-- Snippet 2 -->
+      <article class="snippet-card">
+        <h3><span aria-hidden="true">🧹</span> 正则表达式文本清洗 <span class="badge">文本预处理</span></h3>
+        <p style="color:var(--text-muted); line-height: 1.6;">无论抓取的是微博还是新闻标题，往往掺杂了大量表情符号、HTML标签或无用标点。使用一键函数将其净化为纯净中文序列。</p>
+        <button class="copy-btn" onclick="copyCode(this, 'code2')">复制代码</button>
+        <pre><code id="code2" class="language-python">import re
+
+def clean_text(text):
+    if not isinstance(text, str):
+        return ""
+    # 1. 剔除 HTML 标签 (例如 <br>, <a> 等)
+    text = re.sub(r'<[^>]+>', '', text)
+    # 2. 剔除网页链接
+    text = re.sub(r'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', '', text)
+    # 3. 剔除特殊符号，仅保留中文字符、英文字母和数字
+    # text = re.sub(r'[^\u4e00-\u9fa5a-zA-Z0-9]', '', text) 
+    
+    # 或者用 strip 去除前后空白
+    return text.strip()</code></pre>
+      </article>
+
+      <!-- Snippet 3 -->
+      <article class="snippet-card">
+        <h3><span aria-hidden="true">☁️</span> Jieba分词与极简词云 <span class="badge">内容可视化</span></h3>
+        <p style="color:var(--text-muted); line-height: 1.6;">快速查看某一事件新闻标题或评论的核心议题分布。需提前安装 `jieba` 和 `wordcloud`。</p>
+        <button class="copy-btn" onclick="copyCode(this, 'code3')">复制代码</button>
+        <pre><code id="code3" class="language-python">import jieba
+from wordcloud import WordCloud
+import matplotlib.pyplot as plt
+
+# 读取已合并的文本
+text_data = "汕头大学学子在挑战杯中荣获佳绩..."
+
+# 使用 jieba 精确模式分词
+words = jieba.lcut(text_data)
+
+# 过滤停用词与单字
+stopwords = ['的', '了', '和', '是', '就', '在']
+cleaned_words = [w for w in words if len(w) > 1 and w not in stopwords]
+
+# 生成词云配置 (需确保有中文字体文件如 simhei.ttf)
+wc = WordCloud(
+    font_path='simhei.ttf', # 替换为你电脑上的中文字体路径
+    width=800, 
+    height=400,
+    background_color='white',
+    max_words=100
+)
+
+# 绘制
+word_string = " ".join(cleaned_words)
+wc.generate(word_string)
+
+plt.figure(figsize=(10, 5))
+plt.imshow(wc, interpolation='bilinear')
+plt.axis('off')
+plt.show()</code></pre>
+      </article>
+
+    </div>
+  </section>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+<script>
+  // Setup theme toggle for subpages
+  const themeToggle = document.getElementById("themeToggle");
+  const themeIcon = document.getElementById("themeIcon");
+  function applyTheme(isLight) {
+    document.documentElement.setAttribute('data-theme', isLight ? 'light' : 'dark');
+    themeIcon.textContent = isLight ? '☀️' : '🌙';
+  }
+  const savedTheme = localStorage.getItem('theme');
+  let isLightMode = savedTheme === 'light';
+  applyTheme(isLightMode);
+  themeToggle.addEventListener('click', () => {
+    isLightMode = !isLightMode;
+    applyTheme(isLightMode);
+    localStorage.setItem('theme', isLightMode ? 'light' : 'dark');
+  });
+
+  // Copy code logic
+  function copyCode(btn, codeId) {
+    const codeEl = document.getElementById(codeId);
+    navigator.clipboard.writeText(codeEl.innerText).then(() => {
+      const originalText = btn.innerText;
+      btn.innerText = '✅ 已复制';
+      btn.style.backgroundColor = 'var(--emerald)';
+      btn.style.color = '#fff';
+      setTimeout(() => {
+        btn.innerText = originalText;
+        btn.style.backgroundColor = '';
+        btn.style.color = '';
+      }, 2000);
+    });
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>编程-传媒核心概念知识图谱 | 汕头大学《基础编程》</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;700;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="index.css">
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+  <style>
+    .subpage-hero { padding: 120px 20px 60px; text-align: center; }
+    .subpage-hero h1 { font-size: 2.5rem; margin-bottom: 20px; }
+    .kg-container { width: 100%; height: 75vh; border-radius: 16px; border: 1px solid var(--border); background: var(--bg-card); margin-bottom: 40px; box-shadow: var(--shadow); position: relative; overflow: hidden; }
+  </style>
+</head>
+<body>
+<!-- Animated Background -->
+<div class="bg-grid" aria-hidden="true"></div>
+<div class="bg-glow bg-glow-1" aria-hidden="true"></div><div class="bg-glow bg-glow-2" aria-hidden="true"></div><div class="bg-glow bg-glow-3" aria-hidden="true"></div>
+
+<!-- Navbar -->
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <div class="nav-brand"><a href="index.html" style="text-decoration:none; color:inherit; display:flex; align-items:center; gap:8px"><div class="nav-logo">🐍</div><span>基础编程</span></a></div>
+    <div class="nav-links" id="nav-links">
+      <a href="index.html">← 返回课程主页</a>
+      <a href="snippet-gallery.html">代码实战库</a>
+      <a href="prompt-engineering.html">AI防伪指南</a>
+      <button class="theme-toggle" id="themeToggle"><div class="theme-toggle-knob" id="themeIcon">🌙</div></button>
+    </div>
+  </div>
+</nav>
+
+<main id="main-content">
+  <section class="subpage-hero">
+    <div class="container fade-in">
+      <div class="section-label">🌌 Knowledge Graph</div>
+      <h1>编程与传媒 <span class="accent">概念映射图谱</span></h1>
+      <p class="subtitle" style="max-width: 600px; margin: 0 auto;">打通底层代码语法与高层新闻传播业务场景的逻辑桥梁。点击节点查看详细映射与典型应用场景。</p>
+    </div>
+  </section>
+
+  <section class="container fade-in">
+    <div id="echarts-graph" class="kg-container"></div>
+  </section>
+</main>
+
+<script>
+  // Setup theme toggle for subpages
+  const themeToggle = document.getElementById("themeToggle");
+  const themeIcon = document.getElementById("themeIcon");
+  function applyTheme(isLight) {
+    document.documentElement.setAttribute('data-theme', isLight ? 'light' : 'dark');
+    themeIcon.textContent = isLight ? '☀️' : '🌙';
+  }
+  const savedTheme = localStorage.getItem('theme');
+  let isLightMode = savedTheme === 'light';
+  applyTheme(isLightMode);
+  themeToggle.addEventListener('click', () => {
+    isLightMode = !isLightMode;
+    applyTheme(isLightMode);
+    localStorage.setItem('theme', isLightMode ? 'light' : 'dark');
+    // Refresh chart theme
+    initGraph();
+  });
+
+  let myChart = null;
+
+  function initGraph() {
+    if (myChart) myChart.dispose();
+    const dom = document.getElementById('echarts-graph');
+    // Use darker text and colors in light mode, lighter in dark mode for ECharts
+    const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+    const textColor = isLight ? '#1f2937' : '#e0e7ff';
+    const lineColor = isLight ? '#cbd5e1' : '#334155';
+
+    myChart = echarts.init(dom);
+
+    const categories = [
+      { name: 'Python语法实体 (Syntax)', itemStyle: { color: '#8b5cf6' } },
+      { name: '数据对象 (Data)', itemStyle: { color: '#0ea5e9' } },
+      { name: '新闻传播场景 (Scenario)', itemStyle: { color: '#10b981' } }
+    ];
+
+    const nodes = [
+      // Syntax
+      { id: '1', name: 'For 循环', category: 0, symbolSize: 50 },
+      { id: '2', name: '字典 (Dict)', category: 0, symbolSize: 50 },
+      { id: '3', name: '列表 (List)', category: 0, symbolSize: 50 },
+      { id: '4', name: '字符串操作', category: 0, symbolSize: 45 },
+      { id: '5', name: 'If/Else 条件', category: 0, symbolSize: 40 },
+      { id: '11', name: '正则表达式', category: 0, symbolSize: 45 },
+      // Data
+      { id: '6', name: 'JSON 数据', category: 1, symbolSize: 60 },
+      { id: '7', name: 'Pandas DataFrame', category: 1, symbolSize: 60 },
+      // Scenarios
+      { id: '8', name: '批量爬取微博/公众号', category: 2, symbolSize: 70 },
+      { id: '9', name: '社交媒体元数据解析', category: 2, symbolSize: 65 },
+      { id: '10', name: '新闻标题文本清洗', category: 2, symbolSize: 65 },
+      { id: '12', name: '受众情感词抽取', category: 2, symbolSize: 60 }
+    ];
+
+    const links = [
+      { source: '1', target: '8', label: { show: true, formatter: '实现自动化翻页' } },
+      { source: '2', target: '6', label: { show: true, formatter: '结构等价' } },
+      { source: '6', target: '9', label: { show: true, formatter: '存储点赞/转发' } },
+      { source: '2', target: '9', label: { show: true, formatter: '提取层级字段' } },
+      { source: '4', target: '10', label: { show: true, formatter: 'strip() 去除空白' } },
+      { source: '11', target: '10', label: { show: true, formatter: '过滤非中文字符' } },
+      { source: '3', target: '7', label: { show: true, formatter: '转换为数据序列' } },
+      { source: '5', target: '12', label: { show: true, formatter: '判定正负向极性' } },
+      { source: '1', target: '3', label: { show: true, formatter: '列表推导式' } }
+    ];
+
+    const option = {
+      backgroundColor: 'transparent',
+      tooltip: { formatter: '{b}' },
+      legend: [{ data: categories.map(a => a.name), textStyle: { color: textColor } }],
+      series: [{
+        type: 'graph',
+        layout: 'force',
+        animation: false,
+        label: { show: true, position: 'right', formatter: '{b}', color: textColor, fontSize: 13 },
+        draggable: true,
+        data: nodes,
+        categories: categories,
+        force: { edgeLength: 150, repulsion: 1000 },
+        edges: links,
+        lineStyle: { color: lineColor, width: 2, curveness: 0.1 },
+        edgeLabel: {
+          show: false, // hidden on default to avoid clutter, shows on hover usually
+          textStyle: { fontSize: 11, color: textColor }
+        }
+      }]
+    };
+    myChart.setOption(option);
+  }
+
+  // Handle resize
+  window.addEventListener('resize', () => { if(myChart) myChart.resize(); });
+  initGraph();
+</script>
+</body>
+</html>

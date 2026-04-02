@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI防伪与学术鲁棒性指南 | 汕头大学《基础编程》</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;700;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="index.css">
+  <style>
+    .subpage-hero { padding: 120px 20px 60px; text-align: center; }
+    .subpage-hero h1 { font-size: 2.5rem; margin-bottom: 20px; }
+    .prompt-container { display: flex; flex-direction: column; gap: 40px; margin-bottom: 80px; }
+    .prompt-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: var(--shadow); }
+    .prompt-card h2 { margin-top: 0; color: var(--text); border-bottom: 2px solid var(--border); padding-bottom: 10px; margin-bottom: 24px; }
+    .bad-prompt { border-left: 4px solid var(--red); padding: 16px 20px; background: rgba(239, 68, 68, 0.05); margin-bottom: 20px; border-radius: 0 8px 8px 0; }
+    .good-prompt { border-left: 4px solid var(--emerald); padding: 16px 20px; background: rgba(16, 185, 129, 0.05); margin-bottom: 20px; border-radius: 0 8px 8px 0; }
+    .prompt-title { font-weight: 700; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+    .prompt-title.bad { color: var(--red); }
+    .prompt-title.good { color: var(--emerald); }
+  </style>
+</head>
+<body>
+<!-- Animated Background -->
+<div class="bg-grid" aria-hidden="true"></div>
+<div class="bg-glow bg-glow-1" aria-hidden="true"></div><div class="bg-glow bg-glow-2" aria-hidden="true"></div><div class="bg-glow bg-glow-3" aria-hidden="true"></div>
+
+<!-- Navbar -->
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <div class="nav-brand"><a href="index.html" style="text-decoration:none; color:inherit; display:flex; align-items:center; gap:8px"><div class="nav-logo">🐍</div><span>基础编程</span></a></div>
+    <div class="nav-links" id="nav-links">
+      <a href="index.html">← 返回课程主页</a>
+      <a href="knowledge-graph.html">知识图谱</a>
+      <a href="snippet-gallery.html">代码实战库</a>
+      <button class="theme-toggle" id="themeToggle"><div class="theme-toggle-knob" id="themeIcon">🌙</div></button>
+    </div>
+  </div>
+</nav>
+
+<main id="main-content">
+  <section class="subpage-hero">
+    <div class="container fade-in">
+      <div class="section-label">🛡️ Academic Robustness</div>
+      <h1>AI防伪与 <span class="accent">学术鲁棒性指南</span></h1>
+      <p class="subtitle" style="max-width: 650px; margin: 0 auto;">在使用 Lingma 或 ChatGPT 写代码时，必须防范 AI 幻觉（Jiashe Effect）。掌握结构化 Prompt，让 AI 输出带有错误捕获与日志记录的“工业级”学术代码。</p>
+    </div>
+  </section>
+
+  <section class="container fade-in">
+    <div class="prompt-container">
+      
+      <!-- Section 1 -->
+      <article class="prompt-card">
+        <h2>1. 警惕“一息流”脆弱代码 (脆弱性陷阱)</h2>
+        <p style="margin-bottom: 20px; color: var(--text-muted); line-height:1.6;">初学者往往给出非常含糊的指令，这会导致 AI 输出一段**缺乏容错机制**的代码。如果在爬取网页时网络断开了一次，整段代码就会崩溃白跑。</p>
+        
+        <div class="bad-prompt">
+          <div class="prompt-title bad"><span>❌</span> 灾难级提示词 (Bad Prompt)</div>
+          <div>帮我写一段代码，爬取这100个新闻网站的标题，并保存到CSV里。</div>
+        </div>
+        
+        <div class="good-prompt">
+          <div class="prompt-title good"><span>✅</span> 学术级提示词 (Good Prompt)</div>
+          <div>我正在进行一项新闻传播学研究，需要抓取以下列表中的100个网页。<br><br>
+请你以资深Python数据工程师的身份，为我写一段高鲁棒性（Robustness）的代码，必须满足以下要求：<br>
+1. 包含 `try...except` 错误捕获机制。如果某个网页404，跳过它但必须在控制台打印 "Warning: URL 404"。<br>
+2. 使用 `time.sleep(random.uniform(1,3))` 防止触发反爬机制。<br>
+3. 请使用 `pandas` 的 DataFrame 暂存，随后 `.to_csv()` 导出，确保含有中文字符时不出现乱码（encoding='utf-8-sig'）。</div>
+        </div>
+      </article>
+
+      <!-- Section 2 -->
+      <article class="prompt-card">
+        <h2>2. 伪代码（Pseudo-code）先行策略的 CoT 流程</h2>
+        <p style="margin-bottom: 20px; color: var(--text-muted); line-height:1.6;">不要把 AI 当作“黑盒”。学术诚信的红线是：**你必须确切知道程序的执行流程。**采用 CoT（Chain of Thought 思维链）交互。</p>
+        
+        <div style="background: var(--bg); padding: 20px; border-radius: 8px; border: 1px solid var(--border);">
+          <h4 style="margin-top:0">沟通三步曲：</h4>
+          <ol style="line-height: 1.8; margin-bottom: 0;">
+            <li><strong>第一轮（请求伪代码）</strong>：“PI您好，我想统计这1000条新闻中含有‘人工智能’关键词的数量。先不要写完整Python代码，请以列表形式写出你的逻辑伪代码（步骤）让我审核。”</li>
+            <li><strong>第二轮（人工纠偏）</strong>：“你的步骤2漏了‘需提前用 jieba 分词并清洗停用词’，请修正逻辑。”</li>
+            <li><strong>第三轮（执行产出）</strong>：“逻辑无误，请按照上述步骤输出带有详细中文注释的代码。”</li>
+          </ol>
+        </div>
+      </article>
+
+      <div class="alert alert-warning">
+        <span class="alert-icon" aria-hidden="true">⚠️</span>
+        <div><strong>防伪自查清单</strong>：如果作业被发现“含有编造的包引用（例如 `import news_scraper` 这种不存在的包）”或“使用了课程大纲外极度复杂的语法但学生无法解释”，将视为违反学术诚信处理。</div>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<script>
+  // Setup theme toggle for subpages
+  const themeToggle = document.getElementById("themeToggle");
+  const themeIcon = document.getElementById("themeIcon");
+  function applyTheme(isLight) {
+    document.documentElement.setAttribute('data-theme', isLight ? 'light' : 'dark');
+    themeIcon.textContent = isLight ? '☀️' : '🌙';
+  }
+  const savedTheme = localStorage.getItem('theme');
+  let isLightMode = savedTheme === 'light';
+  applyTheme(isLightMode);
+  themeToggle.addEventListener('click', () => {
+    isLightMode = !isLightMode;
+    applyTheme(isLightMode);
+    localStorage.setItem('theme', isLightMode ? 'light' : 'dark');
+  });
+</script>
+</body>
+</html>
