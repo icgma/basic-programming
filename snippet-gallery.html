@@ -90,12 +90,12 @@ def fetch_url(url):
 def clean_text(text):
     if not isinstance(text, str):
         return ""
-    # 1. 剔除 HTML 标签 (例如 <br>, <a> 等)
-    text = re.sub(r'<[^>]+>', '', text)
+    # 1. 剔除 HTML 标签 (例如 &lt;br&gt;, &lt;a&gt; 等)
+    text = re.sub(r'&lt;[^&gt;]+&gt;', '', text)
     # 2. 剔除网页链接
-    text = re.sub(r'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', '', text)
+    text = re.sub(r'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&amp;+]|[!*\\(\\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', '', text)
     # 3. 剔除特殊符号，仅保留中文字符、英文字母和数字
-    # text = re.sub(r'[^\u4e00-\u9fa5a-zA-Z0-9]', '', text) 
+    # text = re.sub(r'[^\\u4e00-\\u9fa5a-zA-Z0-9]', '', text) 
     
     # 或者用 strip 去除前后空白
     return text.strip()</code></pre>
