@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Python 初学者速查手册 | 汕头大学《基础编程》</title>
+  <meta name="description" content="Python初学者完整速查手册：数据类型、运算符、内置函数、常见错误一网打尽">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;700;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="index.css">
+  <style>
+    .subpage-hero { padding: 120px 20px 60px; text-align: center; }
+    .subpage-hero h1 { font-size: 2.5rem; margin-bottom: 20px; }
+
+    /* Search */
+    .search-box { max-width: 500px; margin: 24px auto 0; position: relative; }
+    .search-box input {
+      width: 100%; padding: 14px 20px 14px 48px;
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: 14px; color: var(--text); font-size: .95rem;
+      font-family: inherit; outline: none; transition: border-color .2s;
+    }
+    .search-box input:focus { border-color: var(--emerald); }
+    .search-box::before {
+      content: '🔍'; position: absolute; left: 18px; top: 50%;
+      transform: translateY(-50%); font-size: 1.1rem;
+    }
+
+    /* Category tabs */
+    .cat-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin: 32px 0 24px; justify-content: center; }
+    .cat-tab {
+      padding: 8px 18px; border-radius: 10px; border: 1px solid var(--border);
+      background: var(--card-bg); color: var(--text2); font-size: .85rem;
+      font-weight: 600; cursor: pointer; transition: all .2s; font-family: inherit;
+    }
+    .cat-tab:hover, .cat-tab.active { border-color: var(--emerald); color: var(--emerald); background: rgba(16,185,129,.08); }
+
+    /* Ref sections */
+    .ref-section { margin-bottom: 48px; scroll-margin-top: 80px; }
+    .ref-section-title {
+      font-size: 1.5rem; font-weight: 800; color: var(--text);
+      margin-bottom: 8px; display: flex; align-items: center; gap: 10px;
+    }
+    .ref-section-desc { font-size: .9rem; color: var(--text2); margin-bottom: 20px; }
+
+    /* Ref cards grid */
+    .ref-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 14px; }
+    .ref-card {
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: 14px; padding: 20px 22px; transition: all .3s;
+      backdrop-filter: blur(6px);
+    }
+    .ref-card:hover { border-color: var(--border2); transform: translateY(-2px); }
+    .ref-card h4 { font-size: .95rem; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+    .ref-card .ref-syntax {
+      font-family: 'JetBrains Mono', monospace; font-size: .82rem;
+      background: var(--code-bg); padding: 10px 14px; border-radius: 8px;
+      color: var(--emerald); margin: 8px 0; overflow-x: auto; white-space: pre;
+    }
+    .ref-card .ref-desc { font-size: .82rem; color: var(--text2); line-height: 1.7; }
+    .ref-card .ref-example { font-size: .78rem; color: var(--text3); margin-top: 6px; font-style: italic; }
+
+    /* Table style for operator/type tables */
+    .ref-table { width: 100%; border-collapse: collapse; margin: 10px 0; }
+    .ref-table th, .ref-table td {
+      padding: 10px 14px; text-align: left; border-bottom: 1px solid var(--border); font-size: .84rem;
+    }
+    .ref-table th { color: var(--text3); font-weight: 600; font-size: .76rem; text-transform: uppercase; letter-spacing: .5px; }
+    .ref-table td { color: var(--text); }
+    .ref-table code { font-size: .8rem; }
+    .ref-table tbody tr:hover { background: rgba(16,185,129,.06); }
+
+    /* Error cards */
+    .error-card {
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: 14px; padding: 20px 22px; margin-bottom: 14px;
+      transition: all .3s; backdrop-filter: blur(6px);
+    }
+    .error-card:hover { border-color: var(--border2); }
+    .error-name { font-size: .95rem; font-weight: 700; color: var(--red); margin-bottom: 4px; }
+    .error-cause { font-size: .84rem; color: var(--text2); margin-bottom: 8px; }
+    .error-fix { font-size: .82rem; color: var(--emerald); font-weight: 600; }
+
+    .hidden { display: none !important; }
+  </style>
+</head>
+<body>
+<!-- Animated Background -->
+<div class="bg-grid" aria-hidden="true"></div>
+<div class="bg-glow bg-glow-1" aria-hidden="true"></div><div class="bg-glow bg-glow-2" aria-hidden="true"></div><div class="bg-glow bg-glow-3" aria-hidden="true"></div>
+
+<!-- Navbar -->
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <div class="nav-brand"><a href="index.html" style="text-decoration:none; color:inherit; display:flex; align-items:center; gap:8px"><div class="nav-logo">🐍</div><span>基础编程</span></a></div>
+    <div class="nav-links" id="nav-links">
+      <a href="index.html">← 返回主页</a>
+      <a href="knowledge-graph.html">知识图谱</a>
+      <a href="snippet-gallery.html">代码片段</a>
+      <a href="prompt-engineering.html">AI防伪指南</a>
+      <a href="python-cheatsheet.html" class="active">Python速查</a>
+      <button class="theme-toggle" id="themeToggle"><div class="theme-toggle-knob" id="themeIcon">🌙</div></button>
+    </div>
+  </div>
+</nav>
+
+<main id="main-content">
+  <section class="subpage-hero">
+    <div class="container">
+      <div class="section-label">📖 Cheat Sheet</div>
+      <h1>Python 初学者 <span class="accent">速查手册</span></h1>
+      <p class="subtitle" style="max-width: 650px; margin: 0 auto;">覆盖本课程全部 Python 核心语法。搜索关键词，快速定位你需要的知识点。</p>
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="搜索：print、列表、for循环、报错..." autocomplete="off">
+      </div>
+      <div class="cat-tabs" id="catTabs">
+        <button class="cat-tab active" data-cat="all">全部</button>
+        <button class="cat-tab" data-cat="types">数据类型</button>
+        <button class="cat-tab" data-cat="operators">运算符</button>
+        <button class="cat-tab" data-cat="strings">字符串</button>
+        <button class="cat-tab" data-cat="lists">列表</button>
+        <button class="cat-tab" data-cat="dicts">字典</button>
+        <button class="cat-tab" data-cat="control">流程控制</button>
+        <button class="cat-tab" data-cat="functions">函数</button>
+        <button class="cat-tab" data-cat="files">文件操作</button>
+        <button class="cat-tab" data-cat="builtins">内置函数</button>
+        <button class="cat-tab" data-cat="errors">常见报错</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="container" style="padding-top: 0;">
+
+    <!-- ========== 数据类型 ========== -->
+    <div class="ref-section" data-cat="types" id="sec-types">
+      <h2 class="ref-section-title">📦 数据类型</h2>
+      <p class="ref-section-desc">Python 中最常用的 6 种数据类型</p>
+      <div class="table-wrap">
+      <table class="ref-table">
+        <thead><tr><th>类型</th><th>名称</th><th>示例</th><th>说明</th></tr></thead>
+        <tbody>
+          <tr><td><code>int</code></td><td>整数</td><td><code>42</code>, <code>-7</code>, <code>0</code></td><td>没有小数点的数字</td></tr>
+          <tr><td><code>float</code></td><td>浮点数</td><td><code>3.14</code>, <code>-0.5</code></td><td>有小数点的数字</td></tr>
+          <tr><td><code>str</code></td><td>字符串</td><td><code>"hello"</code>, <code>'你好'</code></td><td>文本数据，用引号包围</td></tr>
+          <tr><td><code>bool</code></td><td>布尔值</td><td><code>True</code>, <code>False</code></td><td>真/假，用于条件判断</td></tr>
+          <tr><td><code>list</code></td><td>列表</td><td><code>[1, 2, 3]</code></td><td>有序、可变的数据集合</td></tr>
+          <tr><td><code>dict</code></td><td>字典</td><td><code>{"k": "v"}</code></td><td>键值对的数据集合</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <div class="ref-grid" style="margin-top: 16px;">
+        <div class="ref-card">
+          <h4>🔄 类型转换</h4>
+          <div class="ref-syntax">int("42")    → 42
+float("3.14") → 3.14
+str(100)     → "100"
+bool(0)      → False
+list("abc")  → ['a','b','c']</div>
+          <div class="ref-desc">⚠️ <code>int("3.14")</code> 会报错！需要先 <code>int(float("3.14"))</code></div>
+        </div>
+        <div class="ref-card">
+          <h4>🔍 类型检查</h4>
+          <div class="ref-syntax">type(42)        → &lt;class 'int'&gt;
+type("hello")   → &lt;class 'str'&gt;
+isinstance(42, int) → True</div>
+          <div class="ref-desc">用 <code>type()</code> 查看变量类型，<code>isinstance()</code> 判断类型</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== 运算符 ========== -->
+    <div class="ref-section" data-cat="operators" id="sec-operators">
+      <h2 class="ref-section-title">➕ 运算符</h2>
+      <p class="ref-section-desc">算术、比较、逻辑和成员运算符</p>
+      <div class="table-wrap">
+      <table class="ref-table">
+        <thead><tr><th>运算符</th><th>含义</th><th>示例</th><th>结果</th></tr></thead>
+        <tbody>
+          <tr><td><code>+</code></td><td>加法</td><td><code>10 + 3</code></td><td><code>13</code></td></tr>
+          <tr><td><code>-</code></td><td>减法</td><td><code>10 - 3</code></td><td><code>7</code></td></tr>
+          <tr><td><code>*</code></td><td>乘法</td><td><code>10 * 3</code></td><td><code>30</code></td></tr>
+          <tr><td><code>/</code></td><td>除法</td><td><code>10 / 3</code></td><td><code>3.333...</code></td></tr>
+          <tr><td><code>//</code></td><td>整除</td><td><code>10 // 3</code></td><td><code>3</code></td></tr>
+          <tr><td><code>%</code></td><td>取余</td><td><code>10 % 3</code></td><td><code>1</code></td></tr>
+          <tr><td><code>**</code></td><td>幂运算</td><td><code>2 ** 3</code></td><td><code>8</code></td></tr>
+        </tbody>
+      </table>
+      </div>
+      <div class="table-wrap" style="margin-top: 20px;">
+      <table class="ref-table">
+        <thead><tr><th>比较运算符</th><th>含义</th><th>逻辑运算符</th><th>含义</th></tr></thead>
+        <tbody>
+          <tr><td><code>==</code></td><td>等于</td><td><code>and</code></td><td>两个都为True</td></tr>
+          <tr><td><code>!=</code></td><td>不等于</td><td><code>or</code></td><td>至少一个为True</td></tr>
+          <tr><td><code>&gt;</code> / <code>&lt;</code></td><td>大于 / 小于</td><td><code>not</code></td><td>取反</td></tr>
+          <tr><td><code>&gt;=</code> / <code>&lt;=</code></td><td>大于等于 / 小于等于</td><td><code>in</code></td><td>成员运算（判断是否在列表/字符串中）</td></tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+
+    <!-- ========== 字符串 ========== -->
+    <div class="ref-section" data-cat="strings" id="sec-strings">
+      <h2 class="ref-section-title">✂️ 字符串</h2>
+      <p class="ref-section-desc">文本处理是新闻传播专业的核心技能</p>
+      <div class="ref-grid">
+        <div class="ref-card">
+          <h4>📐 创建与索引</h4>
+          <div class="ref-syntax">s = "Hello Python"
+s[0]      → 'H'      # 第1个字符
+s[-1]     → 'n'      # 最后一个
+s[0:5]    → 'Hello'  # 切片
+s[6:]     → 'Python' # 第7个到末尾
+len(s)    → 12       # 长度</div>
+        </div>
+        <div class="ref-card">
+          <h4>🔧 常用方法</h4>
+          <div class="ref-syntax">s.upper()         → "HELLO PYTHON"
+s.lower()         → "hello python"
+s.strip()         → 去除首尾空格
+s.split(",")      → 按逗号分割为列表
+",".join(list)    → 列表合并为字符串
+s.replace("a","b")→ 替换
+s.find("Py")      → 6 (返回位置)
+s.count("l")      → 2 (统计次数)</div>
+        </div>
+        <div class="ref-card">
+          <h4>💬 f-string 格式化（推荐！）</h4>
+          <div class="ref-syntax">name = "张三"
+age = 20
+f"我叫{name}，今年{age}岁"
+
+# 数字格式化
+f"{3.14159:.2f}"  → "3.14"
+f"{156789:,}"     → "156,789"
+f"{0.052:.1%}"    → "5.2%"</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== 列表 ========== -->
+    <div class="ref-section" data-cat="lists" id="sec-lists">
+      <h2 class="ref-section-title">📋 列表</h2>
+      <p class="ref-section-desc">有序、可变的数据容器</p>
+      <div class="ref-grid">
+        <div class="ref-card">
+          <h4>➕ 增</h4>
+          <div class="ref-syntax">lst.append(x)     # 末尾添加
+lst.insert(i, x)  # 指定位置插入
+lst.extend([a,b]) # 批量添加</div>
+        </div>
+        <div class="ref-card">
+          <h4>➖ 删</h4>
+          <div class="ref-syntax">lst.remove(x)     # 按值删除
+lst.pop(i)        # 按索引删除(返回值)
+lst.pop()         # 删除最后一个
+del lst[i]        # 按索引删除</div>
+        </div>
+        <div class="ref-card">
+          <h4>🔍 查</h4>
+          <div class="ref-syntax">x in lst          # 是否存在 → True/False
+lst.index(x)      # 查找索引
+lst.count(x)      # 统计次数
+len(lst)          # 长度</div>
+        </div>
+        <div class="ref-card">
+          <h4>📊 排序与统计</h4>
+          <div class="ref-syntax">lst.sort()                # 原地升序排序
+lst.sort(reverse=True)    # 原地降序
+sorted(lst)               # 返回新列表
+lst.sort(key=len)         # 按长度排序
+sum(lst) / max(lst) / min(lst)</div>
+        </div>
+        <div class="ref-card">
+          <h4>✨ 列表推导式</h4>
+          <div class="ref-syntax"># 基础
+[x*2 for x in range(5)]
+→ [0, 2, 4, 6, 8]
+
+# 带条件
+[x for x in lst if x > 10]
+
+# 字符串处理
+[t.strip() for t in titles]</div>
+        </div>
+        <div class="ref-card">
+          <h4>⚠️ 常见陷阱</h4>
+          <div class="ref-syntax"># sort() 返回 None！
+wrong = [3,1,2].sort()  # None!
+# 正确：先.sort()再用, 或用 sorted()
+
+# 索引从0开始，最大是 len-1
+# lst[len(lst)] → IndexError!</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== 字典 ========== -->
+    <div class="ref-section" data-cat="dicts" id="sec-dicts">
+      <h2 class="ref-section-title">📖 字典</h2>
+      <p class="ref-section-desc">键值对结构，存储结构化数据</p>
+      <div class="ref-grid">
+        <div class="ref-card">
+          <h4>📝 基本操作</h4>
+          <div class="ref-syntax">d = {"name": "张三", "age": 20}
+d["name"]           → "张三"
+d.get("job", "无")  → "无" (安全)
+d["email"] = "..."  # 添加/修改
+del d["age"]        # 删除
+d.pop("age", None)  # 安全删除</div>
+        </div>
+        <div class="ref-card">
+          <h4>🔄 遍历</h4>
+          <div class="ref-syntax">for k in d.keys():     # 遍历键
+for v in d.values():   # 遍历值
+for k,v in d.items():  # 键值对(最常用)
+"name" in d            # 判断键是否存在</div>
+        </div>
+        <div class="ref-card">
+          <h4>📊 统计计数模式</h4>
+          <div class="ref-syntax"># 统计词频/分类计数
+counts = {}
+for item in data:
+    key = item["category"]
+    counts[key] = counts.get(key,0) + 1</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== 流程控制 ========== -->
+    <div class="ref-section" data-cat="control" id="sec-control">
+      <h2 class="ref-section-title">🔀 流程控制</h2>
+      <p class="ref-section-desc">条件判断、循环、跳转</p>
+      <div class="ref-grid">
+        <div class="ref-card">
+          <h4>🔀 if 条件判断</h4>
+          <div class="ref-syntax">if x > 90:
+    print("优秀")
+elif x > 60:
+    print("及格")
+else:
+    print("不及格")
+
+# 三元表达式
+result = "热门" if views>10000 else "普通"</div>
+        </div>
+        <div class="ref-card">
+          <h4>🔄 for 循环</h4>
+          <div class="ref-syntax">for item in my_list:
+    print(item)
+
+for i in range(5):      # 0,1,2,3,4
+for i in range(1, 11):  # 1到10
+for i in range(0,10,2): # 偶数
+
+for i, item in enumerate(lst, 1):
+    print(f"{i}. {item}")</div>
+        </div>
+        <div class="ref-card">
+          <h4>♻️ while 循环</h4>
+          <div class="ref-syntax">count = 5
+while count > 0:
+    print(count)
+    count -= 1    # 别忘了！
+
+# break：跳出循环
+# continue：跳过本次
+# ⚠️ 忘记更新变量 → 无限循环！</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== 函数 ========== -->
+    <div class="ref-section" data-cat="functions" id="sec-functions">
+      <h2 class="ref-section-title">🧩 函数</h2>
+      <p class="ref-section-desc">封装可复用的代码块</p>
+      <div class="ref-grid">
+        <div class="ref-card">
+          <h4>📐 定义与调用</h4>
+          <div class="ref-syntax">def greet(name):
+    """函数文档字符串"""
+    return f"你好，{name}！"
+
+result = greet("张三")
+print(result)  → "你好，张三！"</div>
+        </div>
+        <div class="ref-card">
+          <h4>📋 参数类型</h4>
+          <div class="ref-syntax"># 位置参数
+def add(a, b): return a + b
+
+# 默认参数
+def greet(name, greeting="你好"):
+    return f"{greeting}，{name}"
+
+# 多返回值
+def stats(lst):
+    return min(lst), max(lst), sum(lst)/len(lst)</div>
+        </div>
+        <div class="ref-card">
+          <h4>λ lambda 匿名函数</h4>
+          <div class="ref-syntax"># 简短的一行函数
+square = lambda x: x ** 2
+square(5)  → 25
+
+# 常用于排序
+sorted(lst, key=lambda n: n["views"])</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== 文件操作 ========== -->
+    <div class="ref-section" data-cat="files" id="sec-files">
+      <h2 class="ref-section-title">💾 文件操作</h2>
+      <p class="ref-section-desc">读写文本、CSV、JSON</p>
+      <div class="ref-grid">
+        <div class="ref-card">
+          <h4>📄 文本文件</h4>
+          <div class="ref-syntax"># 读取
+with open("data.txt", "r", encoding="utf-8") as f:
+    content = f.read()          # 读取全部
+    lines = f.readlines()       # 按行读取
+
+# 写入
+with open("out.txt", "w", encoding="utf-8") as f:
+    f.write("hello\n")
+
+# 追加
+with open("log.txt", "a", encoding="utf-8") as f:
+    f.write("新的一行\n")</div>
+        </div>
+        <div class="ref-card">
+          <h4>📊 CSV 文件</h4>
+          <div class="ref-syntax">import csv
+
+# 读取
+with open("data.csv", "r", encoding="utf-8") as f:
+    reader = csv.DictReader(f)
+    for row in reader:
+        print(row["title"])
+
+# 写入
+with open("out.csv", "w", encoding="utf-8-sig",
+          newline="") as f:
+    writer = csv.DictWriter(f, fieldnames=["title","views"])
+    writer.writeheader()
+    writer.writerows(data)</div>
+        </div>
+        <div class="ref-card">
+          <h4>📋 JSON 文件</h4>
+          <div class="ref-syntax">import json
+
+# 读取
+with open("data.json", "r", encoding="utf-8") as f:
+    data = json.load(f)
+
+# 写入
+with open("out.json", "w", encoding="utf-8") as f:
+    json.dump(data, f, ensure_ascii=False, indent=2)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== 内置函数 ========== -->
+    <div class="ref-section" data-cat="builtins" id="sec-builtins">
+      <h2 class="ref-section-title">⚡ 常用内置函数</h2>
+      <p class="ref-section-desc">不需要 import，直接使用</p>
+      <div class="table-wrap">
+      <table class="ref-table">
+        <thead><tr><th>函数</th><th>用途</th><th>示例</th></tr></thead>
+        <tbody>
+          <tr><td><code>print()</code></td><td>输出到屏幕</td><td><code>print("hello")</code></td></tr>
+          <tr><td><code>input()</code></td><td>接收用户输入（返回字符串）</td><td><code>name = input("姓名：")</code></td></tr>
+          <tr><td><code>len()</code></td><td>长度（字符串/列表/字典）</td><td><code>len([1,2,3]) → 3</code></td></tr>
+          <tr><td><code>type()</code></td><td>查看数据类型</td><td><code>type(42) → int</code></td></tr>
+          <tr><td><code>range()</code></td><td>生成数字序列</td><td><code>range(5) → 0,1,2,3,4</code></td></tr>
+          <tr><td><code>int() / float() / str()</code></td><td>类型转换</td><td><code>int("42") → 42</code></td></tr>
+          <tr><td><code>sum() / max() / min()</code></td><td>求和/最大/最小</td><td><code>sum([1,2,3]) → 6</code></td></tr>
+          <tr><td><code>sorted()</code></td><td>排序（返回新列表）</td><td><code>sorted([3,1,2]) → [1,2,3]</code></td></tr>
+          <tr><td><code>enumerate()</code></td><td>带序号遍历</td><td><code>for i,x in enumerate(lst)</code></td></tr>
+          <tr><td><code>zip()</code></td><td>并行遍历多个列表</td><td><code>for a,b in zip(l1,l2)</code></td></tr>
+          <tr><td><code>round()</code></td><td>四舍五入</td><td><code>round(3.14159, 2) → 3.14</code></td></tr>
+          <tr><td><code>abs()</code></td><td>绝对值</td><td><code>abs(-5) → 5</code></td></tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+
+    <!-- ========== 常见报错 ========== -->
+    <div class="ref-section" data-cat="errors" id="sec-errors">
+      <h2 class="ref-section-title">🚨 常见报错速查</h2>
+      <p class="ref-section-desc">遇到了就来这里查，90%的初学者错误都在这里</p>
+
+      <div class="error-card"><div class="error-name">SyntaxError: invalid syntax</div><div class="error-cause">语法错误 — 通常是忘了冒号 <code>:</code>、括号不匹配、引号不配对</div><div class="error-fix">✅ 检查 if/for/def/while 末尾是否有冒号</div></div>
+
+      <div class="error-card"><div class="error-name">IndentationError: unexpected indent</div><div class="error-cause">缩进错误 — 代码缩进不对齐，混用了 Tab 和空格</div><div class="error-fix">✅ 统一用 4 个空格缩进，IDE 中设置 Tab = 4 空格</div></div>
+
+      <div class="error-card"><div class="error-name">NameError: name 'xxx' is not defined</div><div class="error-cause">变量未定义 — 变量名拼错，或者在赋值前就使用了</div><div class="error-fix">✅ 检查变量名拼写，确保先赋值后使用</div></div>
+
+      <div class="error-card"><div class="error-name">TypeError: can only concatenate str to str</div><div class="error-cause">类型不匹配 — 字符串和数字直接用 <code>+</code> 拼接</div><div class="error-fix">✅ 用 <code>f"文字{变量}"</code> 或 <code>str(数字)</code> 转换</div></div>
+
+      <div class="error-card"><div class="error-name">IndexError: list index out of range</div><div class="error-cause">索引越界 — 访问了不存在的列表位置</div><div class="error-fix">✅ 索引最大值 = <code>len(lst) - 1</code>，用 <code>-1</code> 获取最后一个</div></div>
+
+      <div class="error-card"><div class="error-name">KeyError: 'xxx'</div><div class="error-cause">字典键不存在 — 用 <code>d["不存在的键"]</code> 访问</div><div class="error-fix">✅ 用 <code>d.get("key", 默认值)</code> 安全访问</div></div>
+
+      <div class="error-card"><div class="error-name">ValueError: invalid literal for int()</div><div class="error-cause">类型转换失败 — 不能把非数字字符串转为 int</div><div class="error-fix">✅ 确保字符串是纯数字；有小数点先转 float 再转 int</div></div>
+
+      <div class="error-card"><div class="error-name">FileNotFoundError</div><div class="error-cause">文件路径错误 — 文件不在当前目录，或路径写错</div><div class="error-fix">✅ 用 <code>os.getcwd()</code> 检查当前目录，用绝对路径</div></div>
+
+      <div class="error-card"><div class="error-name">ModuleNotFoundError</div><div class="error-cause">库未安装 — 没有用 pip 安装第三方库</div><div class="error-fix">✅ 在终端运行 <code>pip install 库名</code>（不是在 Python 里！）</div></div>
+
+      <div class="error-card"><div class="error-name">AttributeError: 'xxx' has no attribute 'yyy'</div><div class="error-cause">方法名拼错 — Python 区分大小写，<code>.Upper()</code> ≠ <code>.upper()</code></div><div class="error-fix">✅ 检查方法名拼写和大小写</div></div>
+    </div>
+
+  </section>
+</main>
+
+<script>
+  // Theme toggle
+  const themeToggle = document.getElementById("themeToggle");
+  const themeIcon = document.getElementById("themeIcon");
+  function applyTheme(isLight) {
+    document.documentElement.setAttribute('data-theme', isLight ? 'light' : 'dark');
+    themeIcon.textContent = isLight ? '☀️' : '🌙';
+  }
+  const savedTheme = localStorage.getItem('theme');
+  let isLightMode = savedTheme === 'light';
+  applyTheme(isLightMode);
+  themeToggle.addEventListener('click', () => {
+    isLightMode = !isLightMode;
+    applyTheme(isLightMode);
+    localStorage.setItem('theme', isLightMode ? 'light' : 'dark');
+  });
+
+  // Category filtering
+  const catTabs = document.querySelectorAll('.cat-tab');
+  const refSections = document.querySelectorAll('.ref-section');
+
+  catTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      catTabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      const cat = tab.dataset.cat;
+      refSections.forEach(sec => {
+        sec.classList.toggle('hidden', cat !== 'all' && sec.dataset.cat !== cat);
+      });
+    });
+  });
+
+  // Search functionality
+  const searchInput = document.getElementById('searchInput');
+  searchInput.addEventListener('input', () => {
+    const query = searchInput.value.toLowerCase().trim();
+    // Reset category tabs
+    catTabs.forEach(t => t.classList.remove('active'));
+    document.querySelector('[data-cat="all"]').classList.add('active');
+
+    if (!query) {
+      refSections.forEach(sec => sec.classList.remove('hidden'));
+      return;
+    }
+
+    refSections.forEach(sec => {
+      const text = sec.textContent.toLowerCase();
+      sec.classList.toggle('hidden', !text.includes(query));
+    });
+  });
+
+  // Navbar scroll effect
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 10);
+  });
+</script>
+</body>
+</html>

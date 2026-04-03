@@ -12,14 +12,20 @@
   <style>
     .subpage-hero { padding: 120px 20px 60px; text-align: center; }
     .subpage-hero h1 { font-size: 2.5rem; margin-bottom: 20px; }
-    .snippet-container { display: grid; grid-template-columns: 1fr; gap: 30px; margin-bottom: 80px; }
-    .snippet-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 32px; box-shadow: var(--shadow); position: relative; }
-    .snippet-card h3 { margin-top: 0; color: var(--text); font-size: 1.4rem; display: flex; align-items: center; gap: 10px; }
-    .snippet-card .badge { font-size: 0.8rem; padding: 4px 8px; border-radius: 4px; background: rgba(14, 165, 233, 0.2); color: #0ea5e9; font-weight: 600; }
+    .snippet-container { display: grid; grid-template-columns: 1fr; gap: 30px; margin-bottom: 48px; }
+    .snippet-card { background: var(--bg-card, var(--card-bg)); border: 1px solid var(--border); border-radius: 16px; padding: 32px; box-shadow: var(--card-shadow); position: relative; backdrop-filter: blur(6px); }
+    .snippet-card h3 { margin-top: 0; color: var(--text); font-size: 1.4rem; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .snippet-card .badge { font-size: 0.75rem; padding: 3px 10px; border-radius: 6px; font-weight: 600; white-space: nowrap; }
+    .badge-beginner { background: rgba(16,185,129,0.15); color: var(--emerald); }
+    .badge-intermediate { background: rgba(14,165,233,0.15); color: #0ea5e9; }
+    .badge-week { background: rgba(139,92,246,0.12); color: var(--purple); }
     .copy-btn { position: absolute; right: 32px; top: 100px; background: rgba(255,255,255,0.1); border: 1px solid var(--border); color: #fff; padding: 6px 14px; border-radius: 6px; cursor: pointer; transition: all 0.2s; font-size: 0.85rem; }
     html[data-theme="light"] .copy-btn { color: #333; background: #fff; }
-    .copy-btn:hover { background: var(--primary); color: #fff; border-color: var(--primary); }
+    .copy-btn:hover { background: var(--emerald); color: #fff; border-color: var(--emerald); }
     pre[class*="language-"] { border-radius: 12px; margin-top: 20px; box-shadow: inset 0 0 10px rgba(0,0,0,0.2); }
+    .section-divider { text-align: center; margin: 48px 0 16px; padding: 14px 0; border-bottom: 1px solid var(--border); }
+    .section-divider h2 { font-size: 1.3rem; font-weight: 700; color: var(--text); }
+    .section-divider p { font-size: .88rem; color: var(--text2); margin-top: 4px; }
   </style>
 </head>
 <body>
@@ -32,9 +38,11 @@
   <div class="nav-inner">
     <div class="nav-brand"><a href="index.html" style="text-decoration:none; color:inherit; display:flex; align-items:center; gap:8px"><div class="nav-logo">🐍</div><span>基础编程</span></a></div>
     <div class="nav-links" id="nav-links">
-      <a href="index.html">← 返回课程主页</a>
+      <a href="index.html">← 返回主页</a>
       <a href="knowledge-graph.html">知识图谱</a>
+      <a href="snippet-gallery.html" class="active">代码片段</a>
       <a href="prompt-engineering.html">AI防伪指南</a>
+      <a href="python-cheatsheet.html">Python速查</a>
       <button class="theme-toggle" id="themeToggle"><div class="theme-toggle-knob" id="themeIcon">🌙</div></button>
     </div>
   </div>
@@ -50,14 +58,306 @@
   </section>
 
   <section class="container">
+
+    <!-- ========== 初学者入门区 ========== -->
+    <div class="section-divider"><h2>🌱 初学者入门（Week 2–8）</h2><p>零基础也能直接用的核心模板</p></div>
+
     <div class="snippet-container">
-      
-      <!-- Snippet 1 -->
+
+      <!-- Snippet B1: Variables & Types -->
       <article class="snippet-card">
-        <h3><span aria-hidden="true">🛡️</span> ETL 网络请求与伪装 <span class="badge">数据采集中级</span></h3>
-        <p style="color:var(--text-muted); line-height: 1.6;">在抓取新闻网站或社交平台时，经常会遇到 403 Forbidden 错误。你需要使用 `headers` 来伪装成真实的浏览器。</p>
-        <button class="copy-btn" onclick="copyCode(this, 'code1')">复制代码</button>
-        <pre><code id="code1" class="language-python">import requests
+        <h3>🎯 变量与数据类型速查 <span class="badge badge-beginner">入门必备</span><span class="badge badge-week">W2-3</span></h3>
+        <p style="color:var(--text-muted,var(--text2)); line-height: 1.6;">Python 中最基础的概念：变量赋值、数据类型判断、类型转换。每次写新代码时都能用到的基本功。</p>
+        <button class="copy-btn" onclick="copyCode(this, 'codeB1')">复制代码</button>
+        <pre><code id="codeB1" class="language-python"># ===== 变量赋值 =====
+name = "张三"         # 字符串（str）
+age = 20              # 整数（int）
+height = 1.75         # 浮点数（float）
+is_student = True     # 布尔值（bool）
+
+# ===== 查看类型 =====
+print(type(name))     # &lt;class 'str'&gt;
+print(type(age))      # &lt;class 'int'&gt;
+
+# ===== 类型转换 =====
+num_str = "42"
+num_int = int(num_str)       # 字符串 → 整数
+num_float = float(num_str)   # 字符串 → 浮点数
+age_str = str(age)           # 整数 → 字符串
+
+# ===== f-string 格式化输出（最好用！）=====
+print(f"姓名：{name}，年龄：{age}，身高：{height}")
+print(f"阅读量：{156789:,}")      # 千位分隔符 → 156,789
+print(f"增长率：{0.052:.1%}")     # 百分比 → 5.2%
+print(f"圆周率：{3.14159:.2f}")   # 保留2位小数 → 3.14</code></pre>
+      </article>
+
+      <!-- Snippet B2: String Operations -->
+      <article class="snippet-card">
+        <h3>✂️ 字符串切片与常用方法 <span class="badge badge-beginner">字符串基础</span><span class="badge badge-week">W3</span></h3>
+        <p style="color:var(--text-muted,var(--text2)); line-height: 1.6;">新闻标题处理必备。掌握切片、查找、替换、分割，能处理90%的文本操作需求。</p>
+        <button class="copy-btn" onclick="copyCode(this, 'codeB2')">复制代码</button>
+        <pre><code id="codeB2" class="language-python">title = " 【重磅】中国经济2024年增长5.2%！ "
+
+# ===== 清洗 =====
+title = title.strip()                  # 去除首尾空格
+title = title.replace("【重磅】", "")   # 去除标签
+
+# ===== 切片 =====
+print(title[:4])      # 前4个字符
+print(title[-3:])     # 后3个字符
+
+# ===== 常用方法 =====
+print(title.upper())            # 全大写
+print(title.lower())            # 全小写
+print(len(title))               # 长度
+print("经济" in title)           # 判断包含 → True
+print(title.find("2024"))       # 查找位置 → ?
+print(title.count("年"))         # 统计次数
+
+# ===== 分割与合并 =====
+tags = "经济,科技,教育,体育"
+tag_list = tags.split(",")     # 字符串→列表 ['经济','科技',...]
+result = " | ".join(tag_list)  # 列表→字符串 "经济 | 科技 | ..."</code></pre>
+      </article>
+
+      <!-- Snippet B3: List Operations -->
+      <article class="snippet-card">
+        <h3>📋 列表常用操作模板 <span class="badge badge-beginner">数据结构</span><span class="badge badge-week">W4</span></h3>
+        <p style="color:var(--text-muted,var(--text2)); line-height: 1.6;">列表是 Python 中最常用的数据容器。增删改查排序一网打尽。</p>
+        <button class="copy-btn" onclick="copyCode(this, 'codeB3')">复制代码</button>
+        <pre><code id="codeB3" class="language-python">news = ["新闻A", "新闻B", "新闻C"]
+
+# ===== 增 =====
+news.append("新闻D")           # 末尾添加
+news.insert(1, "紧急插播")     # 指定位置插入
+
+# ===== 删 =====
+news.remove("新闻B")           # 按值删除
+removed = news.pop(-1)         # 按索引删除并返回
+
+# ===== 查 =====
+print(news[0])                 # 第一个
+print(news[-1])                # 最后一个
+print("新闻A" in news)         # 是否存在
+
+# ===== 排序 =====
+views = [15000, 8500, 23000, 12000, 45000]
+views.sort(reverse=True)       # 降序排列
+print(f"总和: {sum(views)}, 平均: {sum(views)/len(views):.0f}")
+print(f"最高: {max(views)}, 最低: {min(views)}")
+
+# ===== 列表推导式 =====
+hot = [v for v in views if v > 10000]   # 筛选
+titles_len = [len(t) for t in news]     # 批量处理</code></pre>
+      </article>
+
+      <!-- Snippet B4: Dictionary -->
+      <article class="snippet-card">
+        <h3>📖 字典 CRUD 速查模板 <span class="badge badge-beginner">数据结构</span><span class="badge badge-week">W5</span></h3>
+        <p style="color:var(--text-muted,var(--text2)); line-height: 1.6;">字典用于存储结构化数据（新闻信息卡片、用户资料等），键值对是你的好朋友。</p>
+        <button class="copy-btn" onclick="copyCode(this, 'codeB4')">复制代码</button>
+        <pre><code id="codeB4" class="language-python"># ===== 创建 =====
+news = {
+    "title": "AI技术新突破",
+    "source": "新华社",
+    "views": 195000,
+    "keywords": ["AI", "科技", "突破"]
+}
+
+# ===== 读取 =====
+print(news["title"])                     # 直接访问
+print(news.get("author", "未知"))        # 安全访问（推荐）
+
+# ===== 添加/修改 =====
+news["author"] = "张记者"                # 新增
+news["views"] = 200000                   # 修改
+
+# ===== 遍历 =====
+for key, value in news.items():
+    print(f"  {key}: {value}")
+
+# ===== 统计计数（高频模式）=====
+sources = ["人民日报", "新华社", "人民日报", "央视", "新华社"]
+count = {}
+for s in sources:
+    count[s] = count.get(s, 0) + 1
+print(count)  # {'人民日报': 2, '新华社': 2, '央视': 1}</code></pre>
+      </article>
+
+      <!-- Snippet B5: For Loop -->
+      <article class="snippet-card">
+        <h3>🔄 for 循环常见模式 <span class="badge badge-beginner">循环入门</span><span class="badge badge-week">W6</span></h3>
+        <p style="color:var(--text-muted,var(--text2)); line-height: 1.6;">批量处理数据的核心武器。遍历列表、带序号遍历、并行遍历三大模式。</p>
+        <button class="copy-btn" onclick="copyCode(this, 'codeB5')">复制代码</button>
+        <pre><code id="codeB5" class="language-python">titles = ["经济向好", "科技突破", "体育赛事"]
+
+# 模式1：直接遍历
+for title in titles:
+    print(title)
+
+# 模式2：带序号遍历 enumerate（推荐！）
+for i, title in enumerate(titles, 1):
+    print(f"{i}. {title}")
+
+# 模式3：遍历字典列表
+news_data = [
+    {"title": "新闻A", "views": 15000},
+    {"title": "新闻B", "views": 85000},
+]
+for news in news_data:
+    print(f"{news['title']} — {news['views']:,}阅读")
+
+# 模式4：range() 数字循环
+for i in range(5):        # 0,1,2,3,4
+    print(i, end=" ")
+
+# 模式5：zip() 并行遍历
+names = ["人民日报", "新华社"]
+fans = [15000000, 12000000]
+for name, fan in zip(names, fans):
+    print(f"{name}: {fan:,}粉丝")</code></pre>
+      </article>
+
+      <!-- Snippet B6: Conditional -->
+      <article class="snippet-card">
+        <h3>🔀 条件判断决策模板 <span class="badge badge-beginner">流程控制</span><span class="badge badge-week">W7</span></h3>
+        <p style="color:var(--text-muted,var(--text2)); line-height: 1.6;">让程序学会做决策：新闻分级、数据分类、推荐判断。</p>
+        <button class="copy-btn" onclick="copyCode(this, 'codeB6')">复制代码</button>
+        <pre><code id="codeB6" class="language-python"># ===== 多分支判断 =====
+def classify_heat(views):
+    """新闻热度分级"""
+    if views >= 100000:
+        return "🔥 爆款"
+    elif views >= 50000:
+        return "🌟 热门"
+    elif views >= 10000:
+        return "📰 普通"
+    else:
+        return "❄️ 冷门"
+
+print(classify_heat(250000))  # 🔥 爆款
+
+# ===== 三元表达式（一行搞定）=====
+status = "热门" if 120000 > 100000 else "普通"
+
+# ===== 关键词分类 =====
+def categorize(title):
+    if any(kw in title for kw in ["经济", "GDP", "金融"]):
+        return "经济"
+    elif any(kw in title for kw in ["AI", "科技", "技术"]):
+        return "科技"
+    else:
+        return "其他"</code></pre>
+      </article>
+
+      <!-- Snippet B7: Functions -->
+      <article class="snippet-card">
+        <h3>🧩 函数定义与调用模板 <span class="badge badge-beginner">函数入门</span><span class="badge badge-week">W8</span></h3>
+        <p style="color:var(--text-muted,var(--text2)); line-height: 1.6;">写过 2 次以上的代码就该封装成函数。带默认参数和多返回值。</p>
+        <button class="copy-btn" onclick="copyCode(this, 'codeB7')">复制代码</button>
+        <pre><code id="codeB7" class="language-python"># ===== 基本函数 =====
+def calc_avg_views(news_list):
+    """计算新闻列表的平均阅读量"""
+    if not news_list:
+        return 0
+    total = sum(n["views"] for n in news_list)
+    return total / len(news_list)
+
+# ===== 带默认参数 =====
+def format_news(title, source, views, sep="｜"):
+    return f"{title} {sep} {source} {sep} {views:,}阅读"
+
+print(format_news("经济向好", "人民日报", 150000))
+
+# ===== 多返回值 =====
+def analyze(numbers):
+    return min(numbers), max(numbers), sum(numbers)/len(numbers)
+
+lo, hi, avg = analyze([15000, 85000, 230000])
+print(f"最低:{lo:,} 最高:{hi:,} 平均:{avg:,.0f}")</code></pre>
+      </article>
+
+      <!-- Snippet B8: File I/O -->
+      <article class="snippet-card">
+        <h3>💾 文件读写一键模板 <span class="badge badge-beginner">文件操作</span><span class="badge badge-week">W9</span></h3>
+        <p style="color:var(--text-muted,var(--text2)); line-height: 1.6;">把数据保存到文件 / 从文件读取数据。CSV 和 JSON 是最常用的两种格式。</p>
+        <button class="copy-btn" onclick="copyCode(this, 'codeB8')">复制代码</button>
+        <pre><code id="codeB8" class="language-python">import json, csv
+
+data = [
+    {"title": "新闻A", "source": "人民日报", "views": 15000},
+    {"title": "新闻B", "source": "新华社",   "views": 85000},
+]
+
+# ===== 保存为 JSON =====
+with open("news.json", "w", encoding="utf-8") as f:
+    json.dump(data, f, ensure_ascii=False, indent=2)
+
+# ===== 读取 JSON =====
+with open("news.json", "r", encoding="utf-8") as f:
+    loaded = json.load(f)
+
+# ===== 保存为 CSV =====
+with open("news.csv", "w", encoding="utf-8-sig", newline="") as f:
+    writer = csv.DictWriter(f, fieldnames=["title","source","views"])
+    writer.writeheader()
+    writer.writerows(data)
+
+# ===== 读取 CSV =====
+with open("news.csv", "r", encoding="utf-8-sig") as f:
+    reader = csv.DictReader(f)
+    for row in reader:
+        print(row["title"], row["views"])</code></pre>
+      </article>
+
+      <!-- Snippet B9: pandas -->
+      <article class="snippet-card">
+        <h3>📊 pandas 数据分析速查 <span class="badge badge-beginner">数据分析入门</span><span class="badge badge-week">W10</span></h3>
+        <p style="color:var(--text-muted,var(--text2)); line-height: 1.6;">用 pandas 做数据分析的最常用操作：筛选、统计、分组、排序。<code>pip install pandas</code></p>
+        <button class="copy-btn" onclick="copyCode(this, 'codeB9')">复制代码</button>
+        <pre><code id="codeB9" class="language-python">import pandas as pd
+
+# 创建 DataFrame
+df = pd.DataFrame([
+    {"title": "新闻A", "source": "人民日报", "views": 150000, "cat": "经济"},
+    {"title": "新闻B", "source": "新华社",   "views": 85000,  "cat": "科技"},
+    {"title": "新闻C", "source": "央视新闻", "views": 230000, "cat": "体育"},
+])
+
+# 三板斧：先看数据长什么样
+print(df.head())       # 前几行
+df.info()              # 数据类型
+print(df.describe())   # 数值统计
+
+# 筛选：阅读量 > 10万
+hot = df[df["views"] > 100000]
+
+# 分组统计
+stats = df.groupby("source")["views"].agg(["count","mean"])
+
+# 排序
+df_sorted = df.sort_values("views", ascending=False)
+
+# 读写文件
+# df = pd.read_csv("data.csv")
+# df = pd.read_excel("data.xlsx")
+# df.to_csv("output.csv", index=False, encoding="utf-8-sig")</code></pre>
+      </article>
+
+    </div>
+
+    <!-- ========== 进阶实战区 ========== -->
+    <div class="section-divider"><h2>🚀 进阶实战（Week 11–14）</h2><p>数据采集与文本分析常用模板</p></div>
+
+    <div class="snippet-container">
+
+      <!-- Snippet A1: ETL Request (original) -->
+      <article class="snippet-card">
+        <h3>🛡️ ETL 网络请求与伪装 <span class="badge badge-intermediate">数据采集中级</span><span class="badge badge-week">W11</span></h3>
+        <p style="color:var(--text-muted,var(--text2)); line-height: 1.6;">在抓取新闻网站或社交平台时，经常会遇到 403 Forbidden 错误。你需要使用 <code>headers</code> 来伪装成真实的浏览器。</p>
+        <button class="copy-btn" onclick="copyCode(this, 'codeA1')">复制代码</button>
+        <pre><code id="codeA1" class="language-python">import requests
 import time
 import random
 
@@ -80,12 +380,12 @@ def fetch_url(url):
         return None</code></pre>
       </article>
 
-      <!-- Snippet 2 -->
+      <!-- Snippet A2: Regex Cleaning (original) -->
       <article class="snippet-card">
-        <h3><span aria-hidden="true">🧹</span> 正则表达式文本清洗 <span class="badge">文本预处理</span></h3>
-        <p style="color:var(--text-muted); line-height: 1.6;">无论抓取的是微博还是新闻标题，往往掺杂了大量表情符号、HTML标签或无用标点。使用一键函数将其净化为纯净中文序列。</p>
-        <button class="copy-btn" onclick="copyCode(this, 'code2')">复制代码</button>
-        <pre><code id="code2" class="language-python">import re
+        <h3>🧹 正则表达式文本清洗 <span class="badge badge-intermediate">文本预处理</span><span class="badge badge-week">W14</span></h3>
+        <p style="color:var(--text-muted,var(--text2)); line-height: 1.6;">无论抓取的是微博还是新闻标题，往往掺杂了大量表情符号、HTML标签或无用标点。使用一键函数将其净化为纯净中文序列。</p>
+        <button class="copy-btn" onclick="copyCode(this, 'codeA2')">复制代码</button>
+        <pre><code id="codeA2" class="language-python">import re
 
 def clean_text(text):
     if not isinstance(text, str):
@@ -101,12 +401,12 @@ def clean_text(text):
     return text.strip()</code></pre>
       </article>
 
-      <!-- Snippet 3 -->
+      <!-- Snippet A3: Jieba WordCloud (original) -->
       <article class="snippet-card">
-        <h3><span aria-hidden="true">☁️</span> Jieba分词与极简词云 <span class="badge">内容可视化</span></h3>
-        <p style="color:var(--text-muted); line-height: 1.6;">快速查看某一事件新闻标题或评论的核心议题分布。需提前安装 `jieba` 和 `wordcloud`。</p>
-        <button class="copy-btn" onclick="copyCode(this, 'code3')">复制代码</button>
-        <pre><code id="code3" class="language-python">import jieba
+        <h3>☁️ Jieba分词与极简词云 <span class="badge badge-intermediate">内容可视化</span><span class="badge badge-week">W14</span></h3>
+        <p style="color:var(--text-muted,var(--text2)); line-height: 1.6;">快速查看某一事件新闻标题或评论的核心议题分布。需提前安装 <code>jieba</code> 和 <code>wordcloud</code>。</p>
+        <button class="copy-btn" onclick="copyCode(this, 'codeA3')">复制代码</button>
+        <pre><code id="codeA3" class="language-python">import jieba
 from wordcloud import WordCloud
 import matplotlib.pyplot as plt
 
@@ -146,7 +446,7 @@ plt.show()</code></pre>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
 <script>
-  // Setup theme toggle for subpages
+  // Theme toggle
   const themeToggle = document.getElementById("themeToggle");
   const themeIcon = document.getElementById("themeIcon");
   function applyTheme(isLight) {
@@ -177,6 +477,11 @@ plt.show()</code></pre>
       }, 2000);
     });
   }
+
+  // Navbar scroll
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 10);
+  });
 </script>
 </body>
 </html>
