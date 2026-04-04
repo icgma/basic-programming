@@ -236,9 +236,9 @@ a:focus-visible {
   min-height: 100vh;
   display: flex; align-items: center; justify-content: center;
   padding: 80px 32px 60px;
-  text-align: left;
+  text-align: center;
 }
-.hero-content { width: min(1200px, 100%); margin: 0 auto; }
+.hero-content { max-width: 860px; margin: 0 auto; }
 .hero-shell {
   display: grid;
   grid-template-columns: minmax(0, 1.05fr) minmax(320px, .95fr);
@@ -273,11 +273,11 @@ a:focus-visible {
   line-height: 1.8;
   margin-bottom: 32px;
   max-width: 620px;
-  margin-left: 0; margin-right: 0;
+  margin-left: auto; margin-right: auto;
 }
 .hero-actions {
   display: flex; gap: 12px;
-  flex-wrap: wrap; justify-content: flex-start;
+  flex-wrap: wrap; justify-content: center;
   margin-bottom: 36px;
 }
 .btn {
@@ -310,7 +310,7 @@ a:focus-visible {
 }
 .hero-meta {
   display: flex; gap: 24px;
-  justify-content: flex-start; flex-wrap: wrap;
+  justify-content: center; flex-wrap: wrap;
   padding-top: 24px;
   border-top: 1px solid var(--border);
 }
@@ -321,7 +321,7 @@ a:focus-visible {
 .hero-meta-item .emoji { font-size: 1rem; }
 .hero-stats {
   display: flex; gap: 48px;
-  justify-content: flex-start; flex-wrap: wrap;
+  justify-content: center; flex-wrap: wrap;
   margin-top: 28px;
   padding-top: 24px;
   border-top: 1px solid var(--border);
@@ -467,12 +467,16 @@ section {
 .media-frame {
   background: var(--bg4);
   border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .media-frame img {
   width: 100%;
   aspect-ratio: 16 / 10;
-  object-fit: cover;
-  object-position: top center;
+  object-fit: contain;
+  object-position: center;
+  background: #fff;
 }
 .media-grid-projects .media-frame img { aspect-ratio: 16 / 11; }
 .media-body { padding: 18px 18px 20px; }
