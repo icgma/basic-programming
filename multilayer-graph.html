@@ -50,13 +50,16 @@
   </style>
 </head>
 <body>
-  <nav class="navbar" id="navbar" role="navigation">
+  <nav class="navbar" id="navbar" role="navigation" aria-label="主导航">
     <div class="nav-inner">
-      <div class="nav-brand"><div class="nav-logo" aria-hidden="true">🐍</div><span>基础编程</span></div>
+      <div class="nav-brand"><a href="index.html" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:8px"><div class="nav-logo" aria-hidden="true">🐍</div><span>基础编程</span></a></div>
+      <button class="hamburger" id="hamburger" aria-label="切换导航菜单" aria-expanded="false" aria-controls="nav-links">
+        <span></span><span></span><span></span>
+      </button>
       <div class="nav-links" id="nav-links">
-        <a href="index.html">首页</a>
+        <a href="index.html">← 返回主页</a>
         <a href="knowledge-graph.html">知识图谱</a>
-        <a href="multilayer-graph.html">多元图谱</a>
+        <a href="multilayer-graph.html" class="active">多元图谱</a>
         <button class="theme-toggle" id="themeToggle" aria-label="切换主题"><div class="theme-toggle-knob" id="themeIcon">🌙</div></button>
       </div>
     </div>
@@ -229,6 +232,16 @@
         localStorage.setItem('bp-theme', t);
         render();
       });
+
+      const hamburger = document.getElementById('hamburger');
+      const navLinks = document.getElementById('nav-links');
+      if (hamburger && navLinks) {
+        hamburger.addEventListener('click', () => {
+          const open = hamburger.classList.toggle('open');
+          navLinks.classList.toggle('open');
+          hamburger.setAttribute('aria-expanded', String(open));
+        });
+      }
 
       render();
     })();
