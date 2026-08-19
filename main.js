@@ -309,7 +309,8 @@
   // Auto-highlight Current Teaching Week
   // ═══════════════════════════════════════════════════════════════
   function initCurrentWeek() {
-    const SEMESTER_START = new Date(CONFIG.SEMESTER_START);
+    const parts = CONFIG.SEMESTER_START.split('-').map(Number);
+    const SEMESTER_START = new Date(parts[0], parts[1] - 1, parts[2]);
     const today = new Date();
     const diffMs = today - SEMESTER_START;
     const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));

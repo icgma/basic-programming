@@ -27,7 +27,9 @@
   --grad-warm:  linear-gradient(135deg, #f59e0b, #ef4444);
   --nav-bg:     rgba(6,13,18,.88);
   --card-bg:    rgba(15,25,35,.7);
+  --bg-card:    var(--card-bg);
   --card-shadow:0 8px 32px rgba(0,0,0,.35);
+  --shadow:     var(--card-shadow);
   --card-glow:  0 0 20px rgba(16,185,129,.06);
   --btn-shadow: 0 4px 20px rgba(16,185,129,.3);
   --btn-shadow-h:0 8px 30px rgba(16,185,129,.45);
@@ -61,7 +63,9 @@
   --grad-warm:  linear-gradient(135deg, #d97706, #dc2626);
   --nav-bg:     rgba(255,255,255,.9);
   --card-bg:    rgba(255,255,255,.85);
+  --bg-card:    var(--card-bg);
   --card-shadow:0 4px 20px rgba(0,0,0,.06);
+  --shadow:     var(--card-shadow);
   --card-glow:  0 0 16px rgba(5,150,105,.04);
   --btn-shadow: 0 4px 16px rgba(5,150,105,.2);
   --btn-shadow-h:0 8px 24px rgba(5,150,105,.3);
