@@ -59,7 +59,11 @@
         programming: '逐页抓取、逐条清洗、逐个账号处理时，for 循环负责把相同动作稳定重复。',
         media: '它对应新闻传播任务里的翻页采集、批量处理和周期性统计。',
         code: 'for page in range(1, 6):\n    records.extend(fetch_page(page))',
-        tags: ['循环', '批量', '翻页']
+        tags: ['循环', '批量', '翻页'],
+        learning_objective: "ILO单元5.2 for循环 L3：应用for循环对列表和字典进行批量处理；能使用range()与列表推导式筛选新闻数据",
+        resources: {'code': '教学资源/代码示例/第06周_for循环实例.py', 'course_ref': 'course-references/week06/python-list-comprehension-the-complete-guide-with-examples-c45d6', 'ppt': '教学资源/PPT/第 06 周_for 循环_本科生版.md', 'plan': '01_教学大纲与计划/16周课程计划.md#第6周for循环'},
+        quiz_ids: ["w6_q1", "w6_q2", "w6_q3"],
+        learning_tags: { is_key: true, is_difficult: true, is_exam: true, is_ideology: false }
       },
       {
         id: 'dict',
@@ -73,7 +77,11 @@
         programming: '接口返回值、表单数据和嵌套字段通常都先落到字典里。',
         media: '标题、时间、作者、点赞数这些平台字段最适合用字典表示。',
         code: 'post = {"title": "AIGC 观察", "likes": 1824}\nprint(post["likes"])',
-        tags: ['键值', '字段', '结构化']
+        tags: ['键值', '字段', '结构化'],
+        learning_objective: "ILO单元4.2 字典及其操作 L3：应用字典存储和管理结构化新闻数据，能完成嵌套字典的增删改查",
+        resources: {'code': '教学资源/代码示例/第05周_字典操作代码示例.py', 'ppt': '教学资源/PPT/第 05 周_字典及其操作_本科生版.md', 'plan': '01_教学大纲与计划/16周课程计划.md#第5周字典及其操作'},
+        quiz_ids: ["w5_q1", "w5_q2", "w5_q3"],
+        learning_tags: { is_key: true, is_difficult: true, is_exam: true, is_ideology: false }
       },
       {
         id: 'list',
@@ -87,7 +95,11 @@
         programming: '多条文章、评论或关键词经常先放进列表，再继续筛选、遍历和转换。',
         media: '课堂上的标题集合、评论集合、账号集合都可以先建成列表。',
         code: 'titles = ["平台治理", "算法推荐", "AIGC"]\nfor title in titles:\n    print(title)',
-        tags: ['集合', '顺序', '记录']
+        tags: ['集合', '顺序', '记录'],
+        learning_objective: "ILO单元4.1 列表及其操作 L3：操作执行列表的创建、索引、切片、添加、删除、排序等操作",
+        resources: {'code': '教学资源/代码示例/第04周_列表操作代码示例.py', 'course_ref': 'course-references/week04/python-lists-a-complete-guide-with-examples-openpython-60f2b', 'ppt': '教学资源/PPT/第 04 周_列表及其操作_本科生版.md', 'plan': '01_教学大纲与计划/16周课程计划.md#第4周列表及其操作'},
+        quiz_ids: ["w4_q1", "w4_q2", "w4_q3"],
+        learning_tags: { is_key: true, is_difficult: false, is_exam: true, is_ideology: false }
       },
       {
         id: 'string',
@@ -101,7 +113,11 @@
         programming: 'strip()、replace()、split() 决定了原始文本能否顺利进入后续分析。',
         media: '标题、评论和标签经常混有空格、模板文案和噪声字符。',
         code: 'title = "  #热搜# AIGC 写作工具  "\nclean = title.strip().replace("#", "")',
-        tags: ['文本', '清洗', '替换']
+        tags: ['文本', '清洗', '替换'],
+        learning_objective: "ILO单元3.2 字符串操作 L3：应用字符串的切片、拼接、格式化等操作处理新闻文本",
+        resources: {'code': '教学资源/代码示例/第03周_新闻文本处理实例.py', 'course_ref': 'course-references/week03/python-string-methods-40-with-real-examples-9c9e5', 'ppt': '教学资源/PPT/第 03 周_字符串操作与变量_本科生版.md', 'guide': '教学资源/AI应用指南/第03周_AI在字符串处理中的应用.md', 'plan': '01_教学大纲与计划/16周课程计划.md#第3周字符串操作与变量'},
+        quiz_ids: ["w3_q1", "w3_q2", "w3_q3"],
+        learning_tags: { is_key: true, is_difficult: false, is_exam: true, is_ideology: false }
       },
       {
         id: 'regex',
@@ -115,7 +131,11 @@
         programming: '当普通 replace() 不够用时，正则适合批量删除 URL、话题标签和模板。',
         media: '它特别适合新闻标题清洗、评论去噪和平台采集数据的格式修复。',
         code: 'clean = re.sub(r"http\\S+|#.+?#", " ", text)',
-        tags: ['模式匹配', '去噪', '标题']
+        tags: ['模式匹配', '去噪', '标题'],
+        learning_objective: "ILO单元11.2 文本清洗 L3：应用文本清洗方法处理社交媒体数据中的噪音（正则去URL/标签/特殊字符）",
+        resources: {'ppt': '教学资源/PPT/第 14 周_文本数据预处理与分析_本科生版.md', 'plan': '01_教学大纲与计划/16周课程计划.md#第14周文本数据预处理与分析'},
+        quiz_ids: ["w14_q1"],
+        learning_tags: { is_key: true, is_difficult: true, is_exam: true, is_ideology: false }
       },
       {
         id: 'ifelse',
@@ -129,7 +149,11 @@
         programming: '条件语句适合筛异常值、标高互动内容，或按规则判断情感倾向。',
         media: '在舆情和评论分析里，经常要区分正向、负向和中性反馈。',
         code: 'if score > 0:\n    label = "positive"\nelse:\n    label = "non-positive"',
-        tags: ['判断', '规则', '极性']
+        tags: ['判断', '规则', '极性'],
+        learning_objective: "ILO单元5.1 条件语句 L3：应用if单分支、双分支、多分支语句对代码流程进行控制",
+        resources: {'code': '教学资源/代码示例/第07周_while循环与条件语句代码示例.py', 'ppt': '教学资源/PPT/第 07 周_while 循环与条件语句_本科生版.md', 'plan': '01_教学大纲与计划/16周课程计划.md#第7周while循环与条件语句'},
+        quiz_ids: ["w7_q1", "w7_q2", "w7_q3"],
+        learning_tags: { is_key: true, is_difficult: false, is_exam: true, is_ideology: false }
       },
       {
         id: 'json',
@@ -143,7 +167,11 @@
         programming: 'JSON 适合嵌套字段表达，能和字典、列表自然互转。',
         media: '社交媒体标题、作者、转评赞、时间戳等字段通常都能映射到 JSON。',
         code: 'payload = response.json()\nprint(payload["data"]["title"])',
-        tags: ['接口', '结构化', 'API']
+        tags: ['接口', '结构化', 'API'],
+        learning_objective: "ILO单元7.1 文件读写 L3：操作文本文件、CSV文件、JSON文件的读取和写入",
+        resources: {'code': '教学资源/代码示例/第09周_文件操作与数据读写代码示例.py', 'ppt': '教学资源/PPT/第 09 周_文件操作与数据读写_本科生版.md', 'plan': '01_教学大纲与计划/16周课程计划.md#第9周文件操作与数据读写'},
+        quiz_ids: ["w9_q1"],
+        learning_tags: { is_key: true, is_difficult: false, is_exam: true, is_ideology: false }
       },
       {
         id: 'dataframe',
@@ -157,7 +185,11 @@
         programming: 'DataFrame 适合做排序、分组、时间序列聚合和可视化前的数据准备。',
         media: '无论是选题趋势还是情感分布，进入 DataFrame 后分析会清晰很多。',
         code: 'df = pd.DataFrame(records)\ndaily = df.groupby("date")["likes"].sum()',
-        tags: ['表格', '统计', '聚合']
+        tags: ['表格', '统计', '聚合'],
+        learning_objective: "ILO单元8.1 库的导入与使用 L3 + 单元8.2：执行pandas库导入并完成Excel数据的读取、筛选、分组统计与保存",
+        resources: {'code': '教学资源/代码示例/第10周_pandas基础代码示例.py', 'ppt': '教学资源/PPT/第 10 周_Python 库与 Excel 数据处理_本科生版.md', 'plan': '01_教学大纲与计划/16周课程计划.md#第10周python库与excel数据处理'},
+        quiz_ids: ["w10_q1"],
+        learning_tags: { is_key: true, is_difficult: true, is_exam: true, is_ideology: false }
       },
       {
         id: 'crawl',
@@ -171,7 +203,11 @@
         programming: '它依赖循环、请求和解析，把采集任务变成可持续运行的自动化流程。',
         media: '这是学生最容易理解的“程序如何直接服务业务”的例子之一。',
         code: 'for keyword in keywords:\n    results.extend(fetch_keyword(keyword))',
-        tags: ['采集', '自动化', '翻页']
+        tags: ['采集', '自动化', '翻页'],
+        learning_objective: "ILO单元10.2 微博数据采集 L3 + 单元9.2：操作使用GitHub开源工具与requests完成多关键词/多页批量采集，遵循数据采集伦理",
+        resources: {'ppt': '教学资源/PPT/第 11 周_网页爬虫基础_本科生版.md', 'plan': '01_教学大纲与计划/16周课程计划.md#第12周github与微博数据采集'},
+        quiz_ids: ["w11_q1", "w12_q1"],
+        learning_tags: { is_key: true, is_difficult: true, is_exam: true, is_ideology: true }
       },
       {
         id: 'metadata',
@@ -185,7 +221,11 @@
         programming: '你需要理解嵌套结构、提取字段并处理缺失值，才能把响应变成可用数据。',
         media: '点赞、转发、评论、发布时间和账号信息，都是传播分析里的核心变量。',
         code: 'metrics = {"likes": item["likes"], "shares": item["shares"]}',
-        tags: ['互动量', '字段提取', '平台数据']
+        tags: ['互动量', '字段提取', '平台数据'],
+        learning_objective: "ILO单元10.2/10.3 L3：操作从开源工具返回数据中拆出点赞、转发、评论、发布时间等核心指标并处理缺失值",
+        resources: {'ppt': '教学资源/PPT/第 12 周_GitHub 与微博数据采集_本科生版.md', 'plan': '01_教学大纲与计划/16周课程计划.md#第12-13周'},
+        quiz_ids: ["w12_q1", "w13_q1"],
+        learning_tags: { is_key: false, is_difficult: true, is_exam: true, is_ideology: false }
       },
       {
         id: 'clean',
@@ -199,7 +239,11 @@
         programming: '通常要先去模板、去噪声、统一格式，再决定是否切词和提关键词。',
         media: '标题清洗是做选题聚类、词频统计和语义可视化前不可省略的一步。',
         code: 'title = re.sub(r"\\s+", " ", title).strip()',
-        tags: ['标题', '预处理', '规范化']
+        tags: ['标题', '预处理', '规范化'],
+        learning_objective: "ILO单元11.2 文本清洗 L3：应用文本清洗方法处理社交媒体数据中的噪音（去模板/去噪声/统一格式）",
+        resources: {'ppt': '教学资源/PPT/第 14 周_文本数据预处理与分析_本科生版.md', 'plan': '01_教学大纲与计划/16周课程计划.md#第14周文本数据预处理与分析'},
+        quiz_ids: ["w14_q1"],
+        learning_tags: { is_key: true, is_difficult: false, is_exam: true, is_ideology: false }
       },
       {
         id: 'sentiment',
@@ -213,7 +257,11 @@
         programming: '无论是词典法、规则法还是模型法，前面都需要先做文本清洗和条件判断。',
         media: '它常用于课堂中的舆情观察、品牌反馈分析和事件传播评估。',
         code: 'if any(word in text for word in negative_words):\n    label = "negative"',
-        tags: ['情感', '评论', '反馈']
+        tags: ['情感', '评论', '反馈'],
+        learning_objective: "ILO单元11 文本数据预处理 L3：应用词典法/规则法进行简单情感分析，提取评论中的情绪线索",
+        resources: {'ppt': '教学资源/PPT/第 14 周_文本数据预处理与分析_本科生版.md', 'plan': '01_教学大纲与计划/16周课程计划.md#第14周文本数据预处理与分析'},
+        quiz_ids: ["w14_q1"],
+        learning_tags: { is_key: true, is_difficult: true, is_exam: true, is_ideology: false }
       },
       {
         id: 'trend',
@@ -227,7 +275,11 @@
         programming: '它依赖表格化数据、时间分组和指标聚合，才能看出热度变化。',
         media: '这是把编程能力翻译成编辑部决策支持的典型课堂案例。',
         code: 'trend = df.groupby("day")["comments"].mean().reset_index()',
-        tags: ['趋势', '时间序列', '选题']
+        tags: ['趋势', '时间序列', '选题'],
+        learning_objective: "ILO期末项目整合 L3：应用DataFrame时间分组与聚合，从多天/多账号数据提取选题热度变化信号",
+        resources: {'plan': '01_教学大纲与计划/16周课程计划.md#第15-16周期末项目汇报', 'project_template': '03_作业与评估/期末项目模板.py', 'case': '教学资源/实践案例/Final_project_demo'},
+        quiz_ids: ["w15_q1"],
+        learning_tags: { is_key: false, is_difficult: true, is_exam: false, is_ideology: false }
       },
       {
         id: 'ai',
@@ -241,7 +293,11 @@
         programming: '它帮助学生解释报错、理解代码、生成练习思路和调试步骤，但不替代独立思考。',
         media: '在新闻传播场景里，它更像一个“技术翻译器”，帮助学生理解数据任务和代码逻辑之间的关系。',
         code: 'prompt = "解释这段代码为什么报错，并给出可验证的修复步骤"',
-        tags: ['课程导论', 'Lingma', '协作']
+        tags: ['课程导论', 'Lingma', '协作'],
+        learning_objective: "ILO单元1.1 AI编程工具概述 L2：理解AI辅助编程的概念、优势及Lingma、Trae等工具的使用方法",
+        resources: {'guide': '02_教学策略与指南/AI编程工具使用指南.md', 'strategy': '02_教学策略与指南/AI工具基础语法教学应用策略.md', 'code': '教学资源/第1周_课堂演示代码.py', 'ppt': '教学资源/PPT/第 01 周_课程导论与 AI 编程概述_本科生版.md', 'plan': '01_教学大纲与计划/16周课程计划.md#第1周课程导论与ai编程概述'},
+        quiz_ids: [],
+        learning_tags: { is_key: true, is_difficult: false, is_exam: false, is_ideology: true }
       },
       {
         id: 'setup',
@@ -255,7 +311,11 @@
         programming: '环境一旦配置正确，学生才能稳定运行脚本、安装库和复现实验。',
         media: '它直接决定了课堂上的采集、清洗、分析流程能不能真正落地。',
         code: 'python --version\npip install pandas requests beautifulsoup4',
-        tags: ['安装', '解释器', '依赖']
+        tags: ['安装', '解释器', '依赖'],
+        learning_objective: "ILO单元2.1 Python与AI工具安装 L3：操作实施Python、Lingma IDE的安装和启动，解决编程环境的配置问题",
+        resources: {'homework': '03_作业与评估/Week02_环境配置报告_作业说明.md', 'ppt': '教学资源/PPT/第 02 周_环境配置与基础语法_本科生版.md', 'plan': '01_教学大纲与计划/16周课程计划.md#第2周环境配置与基础语法入门'},
+        quiz_ids: ["w2_q1", "w2_q2", "w2_q3"],
+        learning_tags: { is_key: true, is_difficult: false, is_exam: false, is_ideology: true }
       },
       {
         id: 'variables',
@@ -269,7 +329,11 @@
         programming: '学生先要知道字符串、整数、浮点数和布尔值是什么，后面才能读懂条件、循环和数据结构。',
         media: '在新闻数据处理中，阅读量、标题、时间和真假状态都对应不同类型。',
         code: 'title = "AI 新闻"\nviews = 1280\nis_hot = True',
-        tags: ['变量', '类型', '基础语法']
+        tags: ['变量', '类型', '基础语法'],
+        learning_objective: "ILO单元3.1 数字与运算符 L3 + 单元1.3：理解变量、数据类型、运算符；操作执行数值运算、比较运算、逻辑运算",
+        resources: {'code': '教学资源/代码示例/第02周_数字运算与类型转换代码示例.py', 'ppt': '教学资源/PPT/第 02 周_环境配置与基础语法_本科生版.md', 'plan': '01_教学大纲与计划/16周课程计划.md#第2-3周'},
+        quiz_ids: ["w2_q1", "w2_q2", "w2_q3", "w3_q1"],
+        learning_tags: { is_key: true, is_difficult: false, is_exam: true, is_ideology: false }
       },
       {
         id: 'function',
@@ -283,7 +347,11 @@
         programming: '请求、解析、保存和清洗一旦被写成函数，课堂项目就更容易重构和协作。',
         media: '数据新闻项目通常由多个步骤组成，函数是把流程拆开管理的关键。',
         code: 'def parse_post(item):\n    return {"title": item["title"], "likes": item["likes"]}',
-        tags: ['封装', '复用', '模块化']
+        tags: ['封装', '复用', '模块化'],
+        learning_objective: "ILO单元6.2 自定义函数 L3 + 单元6.1：应用def语句实现自定义函数提高代码复用性，操作range/len/sorted等内置函数",
+        resources: {'code': '教学资源/代码示例/第08周_函数代码示例.py', 'ppt': '教学资源/PPT/第 08 周_函数_本科生版.md', 'plan': '01_教学大纲与计划/16周课程计划.md#第8周函数'},
+        quiz_ids: ["w8_q1", "w8_q2", "w8_q3"],
+        learning_tags: { is_key: true, is_difficult: false, is_exam: true, is_ideology: false }
       },
       {
         id: 'fileio',
@@ -297,7 +365,11 @@
         programming: '数据只在内存里跑一遍不够，写入文件后才算可复现的流程。',
         media: '课程作业和项目都需要提交原始数据、清洗结果和分析输出。',
         code: 'with open("comments.txt", "w", encoding="utf-8") as f:\n    f.write(text)',
-        tags: ['保存', '归档', '复现']
+        tags: ['保存', '归档', '复现'],
+        learning_objective: "ILO单元7.1 文件读写 L3：操作文本文件、CSV文件、JSON文件的读取和写入（含with语句、编码处理）",
+        resources: {'code': '教学资源/代码示例/第09周_文件操作与数据读写代码示例.py', 'ppt': '教学资源/PPT/第 09 周_文件操作与数据读写_本科生版.md', 'plan': '01_教学大纲与计划/16周课程计划.md#第9周文件操作与数据读写'},
+        quiz_ids: ["w9_q1"],
+        learning_tags: { is_key: true, is_difficult: false, is_exam: true, is_ideology: false }
       },
       {
         id: 'excel',
@@ -311,7 +383,11 @@
         programming: 'CSV / Excel 是课堂练习和项目汇报中最常见的输入输出接口。',
         media: '选题统计、账号比较和传播指标汇总经常最终落在表格里。',
         code: 'df.to_excel("report.xlsx", index=False)',
-        tags: ['表格', '输出', '共享']
+        tags: ['表格', '输出', '共享'],
+        learning_objective: "ILO单元7.2 Excel数据处理 L3 + 单元8.1：操作使用openpyxl/pandas完成Excel数据的读取、增删改写和保存",
+        resources: {'code': '教学资源/代码示例/第10周_pandas基础代码示例.py', 'dataset': '教学资源/数据集/teaching_subsets', 'ppt': '教学资源/PPT/第 10 周_Python 库与 Excel 数据处理_本科生版.md', 'plan': '01_教学大纲与计划/16周课程计划.md#第10周python库与excel数据处理'},
+        quiz_ids: ["w10_q1"],
+        learning_tags: { is_key: true, is_difficult: false, is_exam: true, is_ideology: false }
       },
       {
         id: 'requests',
@@ -325,7 +401,11 @@
         programming: 'Requests 负责发起 HTTP 请求、拿回响应，并为后续解析准备原始内容。',
         media: '在新闻网站采集和社交媒体数据获取中，它是最常见的入口工具。',
         code: 'response = requests.get(url, headers=headers, timeout=10)',
-        tags: ['HTTP', '请求', '爬虫']
+        tags: ['HTTP', '请求', '爬虫'],
+        learning_objective: "ILO单元9.2 静态网页数据爬取 L3：操作使用requests和BeautifulSoup库完成静态网页数据爬取",
+        resources: {'code': '教学资源/代码示例/第11周_网页爬虫基础代码示例.py', 'course_ref': 'course-references/week11/python-requests-beautifulsoup-csdn-2573a', 'ppt': '教学资源/PPT/第 11 周_网页爬虫基础_本科生版.md', 'plan': '01_教学大纲与计划/16周课程计划.md#第11周网页爬虫基础'},
+        quiz_ids: ["w11_q1"],
+        learning_tags: { is_key: true, is_difficult: false, is_exam: true, is_ideology: true }
       },
       {
         id: 'bs4',
@@ -339,7 +419,11 @@
         programming: 'BeautifulSoup 适合解析 HTML 标签结构，快速找到目标元素。',
         media: '新闻网站列表页、详情页和栏目页的基础采集都离不开 DOM 解析。',
         code: 'soup = BeautifulSoup(html, "html.parser")\ntitles = [h.get_text(strip=True) for h in soup.select("h2")]',
-        tags: ['HTML', '解析', '网页']
+        tags: ['HTML', '解析', '网页'],
+        learning_objective: "ILO单元9.2 静态网页数据爬取 L3：操作使用BeautifulSoup解析HTML，find/find_all/select提取标题链接正文",
+        resources: {'code': '教学资源/代码示例/第11周_网页爬虫基础代码示例.py', 'course_ref': 'course-references/week11/beautiful-soup-documentation-beautiful-soup-4-14-3-documen-6fed1', 'ppt': '教学资源/PPT/第 11 周_网页爬虫基础_本科生版.md', 'plan': '01_教学大纲与计划/16周课程计划.md#第11周网页爬虫基础'},
+        quiz_ids: ["w11_q1"],
+        learning_tags: { is_key: true, is_difficult: true, is_exam: true, is_ideology: false }
       },
       {
         id: 'github',
@@ -353,7 +437,11 @@
         programming: 'GitHub 让学生学会查 README、识别依赖、运行现成脚本，并理解开源协作方式。',
         media: '微博采集工具、数据分析模板和可视化范例往往都来自公开仓库。',
         code: 'git clone https://github.com/example/repo.git',
-        tags: ['开源', '仓库', '协作']
+        tags: ['开源', '仓库', '协作'],
+        learning_objective: "ILO单元10.1 GitHub使用基础 L2：理解GitHub的作用，能够搜索、下载和使用开源项目（读README、识别依赖）",
+        resources: {'course_ref': 'course-references/week12/dataabc-weibospider-b76e9', 'ppt': '教学资源/PPT/第 12 周_GitHub 与微博数据采集_本科生版.md', 'plan': '01_教学大纲与计划/16周课程计划.md#第12周github与微博数据采集'},
+        quiz_ids: ["w12_q1"],
+        learning_tags: { is_key: true, is_difficult: false, is_exam: false, is_ideology: true }
       },
       {
         id: 'weibo',
@@ -367,7 +455,11 @@
         programming: '它依赖请求、循环、字段提取和文件保存，组合起来形成一条完整流程。',
         media: '微博是课程里最适合做舆情观察和热点传播分析的平台之一。',
         code: 'for keyword in keywords:\n    results.extend(fetch_weibo(keyword))',
-        tags: ['舆情', '热点', '采集']
+        tags: ['舆情', '热点', '采集'],
+        learning_objective: "ILO单元10.2 微博数据采集 L3：操作使用GitHub开源工具（weiboSpider）抓取微博文本数据，遵循数据采集合规性",
+        resources: {'course_ref': 'course-references/week12/dataabc-weibospider-b76e9', 'ppt': '教学资源/PPT/第 12 周_GitHub 与微博数据采集_本科生版.md', 'plan': '01_教学大纲与计划/16周课程计划.md#第12周github与微博数据采集'},
+        quiz_ids: ["w12_q1"],
+        learning_tags: { is_key: true, is_difficult: true, is_exam: true, is_ideology: true }
       },
       {
         id: 'wechat',
@@ -381,7 +473,11 @@
         programming: '它要求学生理解栏目页结构、文章元数据和采集边界。',
         media: '适合分析主流媒体的议题设置、发文频率和栏目差异。',
         code: 'articles = parse_wechat_list(html)\nsave_json(articles, "wechat_articles.json")',
-        tags: ['公众号', '主流媒体', '内容采样']
+        tags: ['公众号', '主流媒体', '内容采样'],
+        learning_objective: "ILO单元10.3 微信公众号数据采集 L3：操作使用开源工具抓取微信公众号文章数据，采集人民日报/央视新闻等主流媒体公众号",
+        resources: {'course_ref': 'course-references/week13/capsane-wechatarticlespider-aba9a', 'ppt': '教学资源/PPT/第 13 周_微信公众号数据采集_本科生版.md', 'plan': '01_教学大纲与计划/16周课程计划.md#第13周微信公众号数据采集'},
+        quiz_ids: ["w13_q1"],
+        learning_tags: { is_key: true, is_difficult: true, is_exam: true, is_ideology: true }
       },
       {
         id: 'segment',
@@ -395,7 +491,11 @@
         programming: '分词和关键词提取帮助学生把文本从句子转换成可计算的词项集合。',
         media: '这一步让新闻文本、评论文本和标题文本进入真正的数据分析阶段。',
         code: 'words = jieba.lcut(clean_text)\nkeywords = [w for w in words if len(w) > 1]',
-        tags: ['分词', '关键词', '文本分析']
+        tags: ['分词', '关键词', '文本分析'],
+        learning_objective: "ILO单元11.1 中文分词 L3：操作使用jieba库进行中文分词和停用词过滤，完成词频统计与TF-IDF关键词提取",
+        resources: {'course_ref': 'course-references/week14/fxsjy-jieba-3e73f', 'ppt': '教学资源/PPT/第 14 周_文本数据预处理与分析_本科生版.md', 'plan': '01_教学大纲与计划/16周课程计划.md#第14周文本数据预处理与分析'},
+        quiz_ids: ["w14_q1"],
+        learning_tags: { is_key: true, is_difficult: true, is_exam: true, is_ideology: false }
       },
       {
         id: 'project',
@@ -409,7 +509,11 @@
         programming: '它要求学生把零散知识点组合成完整流程，包括数据来源、分析方法和结果解释。',
         media: '这是课程最终的能力证明：学生不只是会写代码，而是能围绕真实传播问题组织数据工作。',
         code: 'project = {\n    "question": "某主流媒体的传播策略",\n    "data": records,\n    "analysis": report\n}',
-        tags: ['综合项目', '汇报', '课程收束']
+        tags: ['综合项目', '汇报', '课程收束'],
+        learning_objective: "ILO期末项目整合 L3：整合采集、清洗、分析、可视化与汇报，围绕真实传播问题组织完整社交媒体文本数据项目",
+        resources: {'project_template': '03_作业与评估/期末项目模板.py', 'topics': '教学资源/期末项目选题库.py', 'demo': '教学资源/实践案例/Final_project_demo', 'plan': '01_教学大纲与计划/16周课程计划.md#第15-16周期末项目汇报'},
+        quiz_ids: ["w15_q1", "w16_q1"],
+        learning_tags: { is_key: true, is_difficult: true, is_exam: false, is_ideology: true }
       }
     ],
     links: [
@@ -1264,6 +1368,33 @@
         <h3>课程位置</h3>
         <p>${escapeHtml(module ? `${module.title}（${module.weeks}）` : '课程模块未标注')}。${escapeHtml(module ? module.summary : '')}</p>
       </div>
+      ${node.learning_objective ? `
+      <div class="panel-section">
+        <h3>学习目标</h3>
+        <p>${escapeHtml(node.learning_objective)}</p>
+      </div>` : ''}
+      ${node.resources ? `
+      <div class="panel-section">
+        <h3>关联资源</h3>
+        <div class="panel-actions">
+          ${Object.entries(node.resources).map(([k, v]) => `<button class="relation-btn" type="button"><strong>${escapeHtml(k)}</strong><span>${escapeHtml(v)}</span></button>`).join('')}
+        </div>
+      </div>` : ''}
+      ${(node.quiz_ids && node.quiz_ids.length) ? `
+      <div class="panel-section">
+        <h3>关联测验题</h3>
+        <div class="panel-tags">${node.quiz_ids.map(q => `<span class="panel-tag">${escapeHtml(q)}</span>`).join('')}</div>
+      </div>` : ''}
+      ${node.learning_tags ? `
+      <div class="panel-section">
+        <h3>学习标签</h3>
+        <div class="panel-tags">
+          ${node.learning_tags.is_key ? '<span class="panel-tag">重点</span>' : ''}
+          ${node.learning_tags.is_difficult ? '<span class="panel-tag">难点</span>' : ''}
+          ${node.learning_tags.is_exam ? '<span class="panel-tag">考点</span>' : ''}
+          ${node.learning_tags.is_ideology ? '<span class="panel-tag" style="color:#10b981">思政</span>' : ''}
+        </div>
+      </div>` : ''}
       <div class="panel-section">
         <h3>编程里的作用</h3>
         <p>${escapeHtml(node.programming)}</p>

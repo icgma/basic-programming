@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>多元课程图谱 | 汕头大学《基础编程》</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="index.css">
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+  <script src="multilayer-graph-data.js"></script>
+  <style>
+    .subpage-hero { padding: 120px 20px 32px; text-align: center; }
+    .subpage-hero h1 { font-size: 2.2rem; margin-bottom: 14px; }
+    .ml-shell { max-width: 1400px; margin: 0 auto; padding: 0 20px 80px; }
+    .ml-tabs { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 24px; }
+    .ml-tab {
+      border: 1px solid var(--border2); background: transparent; color: var(--text2);
+      border-radius: 999px; padding: 12px 22px; font: inherit; font-weight: 600;
+      cursor: pointer; transition: all 0.2s;
+    }
+    .ml-tab:hover { border-color: var(--emerald); color: var(--text); }
+    .ml-tab.active { color: #fff; border-color: transparent; background: var(--grad-accent); }
+    .ml-layout { display: grid; grid-template-columns: 1fr 380px; gap: 20px; }
+    @media (max-width: 980px) { .ml-layout { grid-template-columns: 1fr; } }
+    .ml-stage { height: 640px; border: 1px solid var(--border); border-radius: 22px;
+      background: rgba(15,25,35,0.7); backdrop-filter: blur(14px); box-shadow: var(--card-shadow); }
+    [data-theme="light"] .ml-stage { background: rgba(255,255,255,0.88); }
+    .ml-panel { border: 1px solid var(--border); border-radius: 22px; padding: 24px;
+      background: rgba(15,25,35,0.7); backdrop-filter: blur(14px); box-shadow: var(--card-shadow);
+      max-height: 640px; overflow-y: auto; }
+    [data-theme="light"] .ml-panel { background: rgba(255,255,255,0.88); }
+    .ml-kicker { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.05em; color: var(--text2);
+      text-transform: uppercase; margin-bottom: 8px; }
+    .ml-title { font-size: 1.3rem; font-weight: 800; margin-bottom: 10px; color: var(--text); }
+    .ml-desc { color: var(--text2); line-height: 1.7; font-size: 0.95rem; }
+    .ml-section { margin-top: 18px; }
+    .ml-section h3 { font-size: 0.88rem; font-weight: 700; color: var(--text); margin-bottom: 8px;
+      letter-spacing: 0.02em; }
+    .ml-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .ml-tag { padding: 4px 12px; border-radius: 999px; font-size: 0.8rem; font-weight: 600;
+      background: rgba(16,185,129,0.12); color: var(--emerald); border: 1px solid rgba(16,185,129,0.24); }
+    .ml-tag.kp { background: rgba(14,165,233,0.12); color: #0ea5e9; border-color: rgba(14,165,233,0.24); }
+    .ml-tag.lvl-basic { background: rgba(139,92,246,0.12); color: #8b5cf6; border-color: rgba(139,92,246,0.24); }
+    .ml-tag.lvl-adv { background: rgba(245,158,11,0.12); color: #f59e0b; border-color: rgba(245,158,11,0.24); }
+    .ml-tag.lvl-cha { background: rgba(239,68,68,0.12); color: #ef4444; border-color: rgba(239,68,68,0.24); }
+    .ml-back { display: inline-block; margin: 24px 0; color: var(--text2); text-decoration: none;
+      font-weight: 600; }
+    .ml-back:hover { color: var(--emerald); }
+  </style>
+</head>
+<body>
+  <nav class="navbar" id="navbar" role="navigation" aria-label="主导航">
+    <div class="nav-inner">
+      <div class="nav-brand"><a href="index.html" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:8px"><div class="nav-logo" aria-hidden="true">🐍</div><span>基础编程</span></a></div>
+      <button class="hamburger" id="hamburger" aria-label="切换导航菜单" aria-expanded="false" aria-controls="nav-links">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="nav-links" id="nav-links">
+        <a href="index.html">← 返回主页</a>
+        <a href="knowledge-graph.html">知识图谱</a>
+        <a href="multilayer-graph.html" class="active">多元图谱</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="切换主题"><div class="theme-toggle-knob" id="themeIcon">🌙</div></button>
+      </div>
+    </div>
+  </nav>
+
+  <header class="subpage-hero">
+    <h1>多元课程图谱</h1>
+    <p style="color:var(--text2);max-width:720px;margin:0 auto;line-height:1.7">
+      这门课里你会碰到哪些能力、哪些问题、哪些价值取舍，都画在这几张图里了。
+      点开一个节点，能看到它和哪些知识点相关、课上练什么。
+      知识图谱（具体的 Python 概念）在<a href="knowledge-graph.html" style="color:var(--emerald)">另一页</a>。
+    </p>
+  </header>
+
+  <main class="ml-shell">
+    <div class="ml-tabs">
+      <button class="ml-tab active" data-graph="ability">能力图谱</button>
+      <button class="ml-tab" data-graph="problem">问题图谱</button>
+      <button class="ml-tab" data-graph="ideology">思政图谱</button>
+    </div>
+    <div class="ml-layout">
+      <div class="ml-stage" id="graphStage"></div>
+      <aside class="ml-panel" id="detailPanel">
+        <div class="ml-kicker">多元图谱</div>
+        <h2 class="ml-title">点击节点查看详情</h2>
+        <p class="ml-desc">选择上方任一图谱，点击图中节点可查看能力点训练任务、问题参考解答或思政育人路径。</p>
+      </aside>
+    </div>
+    <a class="ml-back" href="knowledge-graph.html">← 返回知识图谱</a>
+  </main>
+
+  <script>
+    (() => {
+      'use strict';
+      const G = window.MULTILAYER_GRAPH || {};
+      const stage = document.getElementById('graphStage');
+      const panel = document.getElementById('detailPanel');
+      let chart = echarts.init(stage);
+      let current = 'ability';
+      let selected = null;
+
+      const COLORS = {
+        ability: { node: '#8b5cf6', edge: '#6366f1' },
+        problem: { node: '#0ea5e9', edge: '#06b6d4' },
+        ideology: { node: '#10b981', edge: '#059669' }
+      };
+
+      const levelLabel = (lv) => ({ '基础': '基础', '进阶': '进阶', '挑战': '挑战', '基本': '基本', '组合': '组合', '复杂': '复杂' }[lv] || lv);
+
+      function buildNodes(graph) {
+        const c = COLORS[graph];
+        const data = G[graph];
+        if (!data) return { nodes: [], links: [] };
+        const colorFor = (n) => {
+          if (graph === 'ability') return c.node;
+          if (graph === 'problem') {
+            const m = { '基本': '#0ea5e9', '组合': '#f59e0b', '复杂': '#ef4444' };
+            return m[n.level] || c.node;
+          }
+          return c.node;
+        };
+        const nodes = data.nodes.map(n => ({
+          id: n.id || n.node_id,
+          name: n.name || n.title || n.id,
+          raw: n,
+          symbolSize: graph === 'problem' ? (n.level === '复杂' ? 72 : n.level === '组合' ? 58 : 46) : 56,
+          itemStyle: { color: colorFor(n), borderColor: '#fff', borderWidth: 2 },
+          label: { show: true, color: '#fff', fontWeight: 700 }
+        }));
+        const links = (data.links || []).filter(l => l.source && l.target).map(l => ({
+          source: l.source, target: l.target,
+          lineStyle: { color: c.edge, width: 2, curveness: 0.15, opacity: 0.6 }
+        }));
+        return { nodes, links };
+      }
+
+      function render() {
+        const { nodes, links } = buildNodes(current);
+        chart.setOption({
+          backgroundColor: 'transparent',
+          tooltip: {
+            formatter: p => p.data.raw ? `<b>${p.data.name}</b><br>${(p.data.raw.level ? '层级：' + p.data.raw.level : '')}` : p.name
+          },
+          series: [{
+            type: 'graph', layout: 'force', roam: true, draggable: true,
+            data: nodes, links,
+            force: { edgeLength: 160, repulsion: 900, gravity: 0.08 },
+            edgeSymbol: ['none', 'arrow'], edgeSymbolSize: [0, 8],
+            emphasis: { focus: 'adjacency', scale: true }
+          }]
+        }, true);
+        renderDefault();
+      }
+
+      function escapeHtml(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+      function renderDefault() {
+        const data = G[current];
+        const desc = (data.description || '').split('。')[0];
+        const stats = `${data.nodes.length} 节点 / ${data.links.length} 关系`;
+        panel.innerHTML = `
+          <div class="ml-kicker">${current === 'ability' ? '能力图谱' : current === 'problem' ? '问题图谱' : '思政图谱'}</div>
+          <h2 class="ml-title">${escapeHtml(desc)}</h2>
+          <p class="ml-desc">${escapeHtml(data.coverage_note || '')}</p>
+          <div class="ml-section"><h3>规模</h3><div class="ml-tags"><span class="ml-tag">${stats}</span></div></div>
+          <div class="ml-section"><h3>提示</h3><p class="ml-desc">点击图中任一节点查看详情。</p></div>`;
+      }
+
+      function renderNode(node) {
+        const n = node.raw;
+        if (current === 'ability') {
+          panel.innerHTML = `
+            <div class="ml-kicker">能力点</div>
+            <h2 class="ml-title">${escapeHtml(n.name)}</h2>
+            <div class="ml-tags" style="margin-bottom:12px">
+              <span class="ml-tag lvl-${n.level==='基础'?'basic':n.level==='进阶'?'adv':'cha'}">${escapeHtml(n.level)}级</span>
+              ${n.weeks ? `<span class="ml-tag">${escapeHtml(n.weeks)}</span>` : ''}
+            </div>
+            <div class="ml-section"><h3>支撑知识点</h3><div class="ml-tags">${(n.supported_kp_ids||[]).map(k=>`<span class="ml-tag kp">${escapeHtml(k)}</span>`).join('')}</div></div>
+            <div class="ml-section"><h3>训练任务</h3><p class="ml-desc">${escapeHtml(n.training_task||'')}</p></div>
+            <div class="ml-section"><h3>量化评估方案</h3><p class="ml-desc">${escapeHtml(n.assessment_method||'')}</p></div>
+            <div class="ml-section"><h3>对应 ILO</h3><p class="ml-desc">${escapeHtml(n.target_ilo||'')}</p></div>`;
+        } else if (current === 'problem') {
+          panel.innerHTML = `
+            <div class="ml-kicker">问题（${escapeHtml(n.level)}）</div>
+            <h2 class="ml-title">${escapeHtml(n.title||n.name)}</h2>
+            <div class="ml-tags" style="margin-bottom:12px">
+              <span class="ml-tag lvl-${n.level==='基本'?'basic':n.level==='组合'?'adv':'cha'}">${escapeHtml(n.level)}</span>
+            </div>
+            <div class="ml-section"><h3>情境</h3><p class="ml-desc">${escapeHtml(n.context||'')}</p></div>
+            <div class="ml-section"><h3>涉及知识点</h3><div class="ml-tags">${(n.related_kp_ids||[]).map(k=>`<span class="ml-tag kp">${escapeHtml(k)}</span>`).join('')}</div></div>
+            <div class="ml-section"><h3>教师参考解答</h3><p class="ml-desc">${(Array.isArray(n.teacher_answer)?n.teacher_answer.map(escapeHtml).join('<br>'):escapeHtml(n.teacher_answer||''))}</p></div>
+            <div class="ml-section"><h3>目标能力</h3><p class="ml-desc">${escapeHtml(n.target_ability||'')}</p></div>`;
+        } else {
+          panel.innerHTML = `
+            <div class="ml-kicker">思政点</div>
+            <h2 class="ml-title">${escapeHtml(n.title||n.name)}</h2>
+            <div class="ml-section"><h3>关联知识点</h3><div class="ml-tags">${(n.related_kp_ids||[]).map(k=>`<span class="ml-tag kp">${escapeHtml(k)}</span>`).join('')}</div></div>
+            <div class="ml-section"><h3>关联案例</h3><p class="ml-desc">${escapeHtml(n.case||'')}</p></div>
+            <div class="ml-section"><h3>价值塑造目标</h3><p class="ml-desc">${escapeHtml(n.value_goal||'')}</p></div>
+            <div class="ml-section"><h3>育人路径</h3><p class="ml-desc">${escapeHtml(n.pathway||'')}</p></div>`;
+        }
+      }
+
+      document.querySelectorAll('.ml-tab').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.ml-tab').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          current = btn.dataset.graph;
+          selected = null;
+          render();
+        });
+      });
+
+      chart.on('click', p => {
+        if (p.dataType === 'node' && p.data.raw) { selected = p.data; renderNode(selected); }
+      });
+      chart.getZr().on('click', e => { if (!e.target && selected) { selected = null; renderDefault(); } });
+      window.addEventListener('resize', () => chart.resize());
+
+      // 主题
+      const saved = localStorage.getItem('bp-theme');
+      const theme = saved || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+      document.getElementById('themeIcon').textContent = theme === 'light' ? '☀️' : '🌙';
+      document.getElementById('themeToggle').addEventListener('click', () => {
+        const t = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', t);
+        document.getElementById('themeIcon').textContent = t === 'light' ? '☀️' : '🌙';
+        localStorage.setItem('bp-theme', t);
+        render();
+      });
+
+      const hamburger = document.getElementById('hamburger');
+      const navLinks = document.getElementById('nav-links');
+      if (hamburger && navLinks) {
+        hamburger.addEventListener('click', () => {
+          const open = hamburger.classList.toggle('open');
+          navLinks.classList.toggle('open');
+          hamburger.setAttribute('aria-expanded', String(open));
+        });
+      }
+
+      render();
+    })();
+  </script>
+</body>
+</html>
