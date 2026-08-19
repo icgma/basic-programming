@@ -40,6 +40,9 @@
 <nav class="navbar" id="navbar">
   <div class="nav-inner">
     <div class="nav-brand"><a href="index.html" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:8px"><div class="nav-logo">🐍</div><span>基础编程</span></a></div>
+    <button class="hamburger" id="hamburger" aria-label="切换导航菜单" aria-expanded="false" aria-controls="nav-links">
+      <span></span><span></span><span></span>
+    </button>
     <div class="nav-links" id="nav-links">
       <a href="index.html">← 返回主页</a>
       <a href="knowledge-graph.html">知识图谱</a>
@@ -354,8 +357,8 @@
 <script>
   const themeToggle=document.getElementById("themeToggle"),themeIcon=document.getElementById("themeIcon");
   function applyTheme(t){document.documentElement.setAttribute("data-theme",t?"light":"dark");themeIcon.textContent=t?"☀️":"🌙"}
-  const savedTheme=localStorage.getItem("theme");let isLightMode=savedTheme==="light";applyTheme(isLightMode);
-  themeToggle.addEventListener("click",()=>{isLightMode=!isLightMode;applyTheme(isLightMode);localStorage.setItem("theme",isLightMode?"light":"dark")});
+  const savedTheme=localStorage.getItem("bp-theme");let isLightMode=savedTheme==="light";applyTheme(isLightMode);
+  themeToggle.addEventListener("click",()=>{isLightMode=!isLightMode;applyTheme(isLightMode);localStorage.setItem("bp-theme",isLightMode?"light":"dark")});
   const navbar=document.getElementById("navbar");
   window.addEventListener("scroll",()=>{navbar.classList.toggle("scrolled",window.scrollY>20)});
   document.getElementById("scrollTop").addEventListener("click",()=>window.scrollTo({top:0,behavior:"smooth"}));
@@ -365,5 +368,6 @@
 <!-- 51.la Analytics -->
 <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
 <script>LA.init({id:"3PvxZ0x46g8M8f5V",ck:"3PvxZ0x46g8M8f5V",autoTrack:true,hashMode:true})</script>
+  <script src="nav.js"></script>
 </body>
 </html>
