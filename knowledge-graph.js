@@ -867,6 +867,38 @@
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#39;');
 
+  const RESOURCE_KIND = {
+    ppt: '课件',
+    code: '代码示例',
+    plan: '课程计划',
+    guide: 'AI 指南',
+    homework: '作业说明',
+    course_ref: '延伸阅读',
+    dataset: '数据集',
+    case: '实践案例',
+    demo: '演示项目',
+    project_template: '项目模板',
+    topics: '选题库',
+    strategy: '教学策略'
+  };
+
+  const resourceSummary = (resources) => {
+    const kinds = Object.keys(resources || {})
+      .map(key => RESOURCE_KIND[key] || key)
+      .filter(Boolean);
+    if (!kinds.length) return '本节点暂未挂教学包资源。';
+    return '对应教学包里的：' + kinds.join('、') + '。具体文件在课程资料目录，不在这个公开网页上。';
+  };
+
+  const quizLabels = (ids) => {
+    const weeks = new Set();
+    (ids || []).forEach(id => {
+      const match = String(id).match(/^w(\d+)/i);
+      if (match) weeks.add(`第 ${Number(match[1])} 周`);
+    });
+    return weeks.size ? Array.from(weeks) : ['随堂测验'];
+  };
+
   const rgba = (hex, alpha) => {
     const clean = hex.replace('#', '');
     const full = clean.length === 3 ? clean.split('').map(ch => ch + ch).join('') : clean;
@@ -1376,14 +1408,12 @@
       ${node.resources ? `
       <div class="panel-section">
         <h3>关联资源</h3>
-        <div class="panel-actions">
-          ${Object.entries(node.resources).map(([k, v]) => `<button class="relation-btn" type="button"><strong>${escapeHtml(k)}</strong><span>${escapeHtml(v)}</span></button>`).join('')}
-        </div>
+        <p>${escapeHtml(resourceSummary(node.resources))}</p>
       </div>` : ''}
       ${(node.quiz_ids && node.quiz_ids.length) ? `
       <div class="panel-section">
-        <h3>关联测验题</h3>
-        <div class="panel-tags">${node.quiz_ids.map(q => `<span class="panel-tag">${escapeHtml(q)}</span>`).join('')}</div>
+        <h3>关联测验</h3>
+        <div class="panel-tags">${quizLabels(node.quiz_ids).map(q => `<span class="panel-tag">${escapeHtml(q)}</span>`).join('')}</div>
       </div>` : ''}
       ${node.learning_tags ? `
       <div class="panel-section">
